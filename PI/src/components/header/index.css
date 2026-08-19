@@ -1,0 +1,14 @@
+header {
+    width: 100%;
+    align-items: center;
+    padding: 5vmin;
+    background-color: #b40000;
+}
+
+@media screen and (max-width: 768px) {
+    header {
+        position: sticky;
+        top: 0;
+        height: 3vmin;
+    }
+}

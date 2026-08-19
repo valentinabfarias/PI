@@ -1,0 +1,15 @@
+#mobile-footer {
+    background-color: aqua;
+    width: 100%;
+    padding: 4ch;
+    position: sticky;
+    z-index: 100;
+    bottom: 0;
+    height: 3vmin;
+}
+
+@media screen and (min-width: 768px) {
+    #mobile-footer {
+        display: none;
+    }
+}

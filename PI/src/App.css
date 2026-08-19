@@ -1,0 +1,11 @@
+* {
+  margin: 0;
+}
+
+#main {
+  margin: 0 10vw;
+  background-color: white;
+  border-width: 10px;
+  border-color: black;
+  height: 5000px;
+}
