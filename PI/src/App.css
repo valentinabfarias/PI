@@ -2,10 +2,14 @@
   margin: 0;
 }
 
+body {
+  background-color: grey;
+}
+
 #main {
-  margin: 0 10vw;
+  margin: 0 15vw;
   background-color: white;
   border-width: 10px;
   border-color: black;
-  height: 5000px;
+  height: 2000px;
 }

@@ -1,4 +1,4 @@
-import './index.css';
+import './mobile-footer.css';
 
 function MobileFooter () {
     return (

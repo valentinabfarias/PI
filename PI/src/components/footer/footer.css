@@ -1,0 +1,21 @@
+#footer {
+    width: 100%;
+    box-sizing: border-box;
+    background-color: #00a2ff;
+    padding: 5ch 15ch;
+}
+
+#footer-nav {
+    max-width: 100%;
+    display: flex;
+    justify-content: space-between;
+}
+
+.footer-content-items {
+    display: flex;
+    flex-direction: column;
+
+    a:not(:last-of-type), p:not(:last-of-type) {
+        margin-bottom: 12px;
+    }
+}

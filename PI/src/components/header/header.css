@@ -1,6 +1,6 @@
 header {
     width: 100%;
-    align-items: center;
+    box-sizing: border-box;
     padding: 5vmin;
     background-color: #b40000;
 }

@@ -1,10 +1,16 @@
-import './index.css';
+import './header.css';
 
 function Header () {
     return (
         <header>
-            <span>
-                
+            <span id="header-css">
+                <div id="logo-div">
+                    <img src=""></img>
+                    <p>Testando</p>
+                </div>
+                <div>
+
+                </div>
             </span>
         </header>
     )

@@ -1,5 +1,6 @@
 import Header from './components/header/Header'
 import MobileFooter from './components/mobile-footer/MobileFooter'
+import Hero from './components/hero/Hero'
 import Footer from './components/footer/Footer'
 
 import './App.css'
@@ -11,7 +12,7 @@ function App() {
     <>
       <Header />
         <main id="main">
-    
+          <Hero></Hero>
         </main>
       <Footer />
       <MobileFooter />
