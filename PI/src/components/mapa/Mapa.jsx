@@ -1,20 +1,19 @@
 import './mapa.css';
 
-function Mapa () {
-    // const totalCasas = 20; 
-    const mapa = document.getElementById('mapa');
-    
+function Mapa () { 
+    const casas = []
     // Cria os números de 1 a 20
     for (let i = 1; i <= 12; i++) {
-        const item = document.createElement('div');
-        item.className = 'item';
-        item.textContent = i;
-        mapa.appendChild(item);
+        casas.push(i);
     }
 
     return (
         <>
-            <div class="mapa" id="mapa"></div>
+            <div className="mapa" id="mapa">
+                {casas.map((key) => (
+                <div className="item" key={key}></div>
+                ))}
+            </div>
         </>
     )
 }
