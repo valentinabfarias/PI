@@ -1,5 +1,17 @@
-@media screen and (max-width: 768px) {
+@media screen and (max-aspect-ratio: 1/0.9) {
     #main {
         margin: 0 0
     }
+
+    #mobile-footer {
+        display: block;
+    }
+
+    .mapa {
+    width: 100%;
+    display: grid;
+    grid-template-columns: auto;
+    gap: 110px;
+    justify-content: center;
+}
 }

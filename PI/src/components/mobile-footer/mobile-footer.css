@@ -1,11 +1,12 @@
 #mobile-footer {
-    background-color: aqua;
+    background-color: #34502b;
     width: 100%;
     padding: 4ch 2ch;
     position: sticky;
     z-index: 100;
     bottom: 0;
     box-sizing: border-box;
+    display: none;
 }
 
 #mobile-footer span {
@@ -20,10 +21,5 @@
     margin: auto;
     height: 50px;
     width: 50px;
-}
-
-@media screen and (min-width: 768px) {
-    #mobile-footer {
-        display: none;
-    }
+    cursor: pointer;
 }

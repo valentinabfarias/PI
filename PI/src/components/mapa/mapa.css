@@ -1,7 +1,7 @@
 .mapa {
   width: 100%;
   display: grid;
-  grid-template-columns: repeat(6s, 70px); 
+  grid-template-columns: auto auto;
   gap: 110px;
   justify-content: center;
 }
