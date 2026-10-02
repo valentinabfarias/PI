@@ -1,7 +1,7 @@
 #mobile-footer {
     background-color: #34502b;
     width: 100%;
-    padding: 4ch 2ch;
+    height: calc(10vh + 8vw);
     position: sticky;
     z-index: 100;
     bottom: 0;
@@ -9,17 +9,18 @@
     display: none;
 }
 
-#mobile-footer span {
+#mobile-footer td {
     height: 100%;
     width: 100%;
     display: flex;
-    justify-content: space-evenly;
+    justify-content: space-between;
     align-items: center;
+    box-sizing: border-box;
 }
 
 .footer-icon {
     margin: auto;
-    height: 50px;
-    width: 50px;
+    height: 8vw;
+    width: 8vw;
     cursor: pointer;
 }
