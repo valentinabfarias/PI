@@ -1,8 +1,10 @@
+@import url(../../style.css);
+
 header {
     width: 100%;
     box-sizing: border-box;
     padding: 5vmin;
-    background-color: #941f1f;
+    background-color: var(--destaque-sec-1);
 }
 
 @media screen and (max-width: 768px) {

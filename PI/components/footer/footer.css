@@ -1,8 +1,10 @@
+@import url(../../style.css);
+
 #footer {
     width: 100%;
     box-sizing: border-box;
-    background-color: #34502b;
-    color: white;
+    background-color: var(--destaque-1);
+    color: var(--fonte-destaque-1);
     padding: 5ch 15ch;
 }
 

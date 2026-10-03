@@ -1,5 +1,7 @@
+@import url(../../style.css);
+
 #mobile-footer {
-    background-color: #34502b;
+    background-color: var(--destaque-1);
     width: 100%;
     height: calc(10vh + 8vw);
     position: sticky;
@@ -18,7 +20,7 @@
     box-sizing: border-box;
 }
 
-.footer-icon {
+.mobile-footer-icon {
     margin: auto;
     height: 8vw;
     width: 8vw;
