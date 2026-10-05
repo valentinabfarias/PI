@@ -1,30 +1,33 @@
+@import url(./fonts/fonts.css);
+
 * {
-    margin: 0;
+  margin: 0;
 }
 
 :root {
-    /*modo claro*/
-    --fundo: #e2e9e3;
-    --fonte-fundo: #;
 
-    --main: white;
-    --fonte-main: black;
+  --fonte: "Atkinson Hyperlegible", sans-serif;
 
-    --destaque-1: #34502b;
-    --fonte-destaque-1: white;
+  /*modo claro*/
+  --fundo: #e2e9e3;
+  --texto-fundo: #;
 
-    --destaque-2: # ;
-    --fonte-destaque-2: #;
+  --main: white;
+  --texto-main: black;
 
-    --destaque-sec-1: #941f1f;
-    --fonte-destaque-sec-1: #;
+  --destaque-1: #34502b;
+  --texto-destaque-1: white;
 
-    --destaque-sec-2: #;
-    --fonte-destaque-sec-2: #;
+  --destaque-2: #;
+  --texto-destaque-2: #;
 
+  --destaque-sec-1: #941f1f;
+  --texto-destaque-sec-1: #;
 
+  --destaque-sec-2: #;
+  --texto-destaque-sec-2: #;
 
-    /*@media (prefers-color-scheme: dark) {
+  /*@media (prefers-color-scheme: dark) {
 
     --fundo: #303451;
 
@@ -38,10 +41,9 @@
     }*/
 }
 
-/**********************/
-
 body {
   background-color: var(--fundo);
+  font-family: var(--fonte);
 }
 
 main {
@@ -49,25 +51,34 @@ main {
   background-color: var(--main);
   border-width: 10px;
   border-color: black;
-  height: 2000px;
 }
 
+@media screen and (max-aspect-ratio: 1/0.9) {
+  main {
+    margin: 0 0;
+  }
+}
+
+/*****/
+
 #hero-test {
-    width: 100%;
-    box-sizing: border-box;
-    height: 300px;
-    background-color: #34502b;
+  width: 100%;
+  box-sizing: border-box;
+  height: 300px;
+  background-color: #34502b;
 }
 
 #conteudo {
-    margin-bottom: 1000px;
+  margin-bottom: 1000px;
 }
 
 /**********************/
 
 #padding {
-    padding: 30px;
+  padding: 40px;
 }
+
+/*****/
 
 .mapa {
   width: 100%;
@@ -76,6 +87,18 @@ main {
   gap: 110px;
   justify-content: center;
 }
+
+@media screen and (max-aspect-ratio: 1/0.9) {
+  .mapa {
+    width: 100%;
+    display: grid;
+    grid-template-columns: auto;
+    gap: 110px;
+    justify-content: center;
+  }
+}
+
+/*****/
 
 .item {
   width: 160px;
@@ -89,11 +112,23 @@ main {
   align-items: center;
   border-radius: 12px;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
-  transition: transform 0.2s, background 0.2s;
-  /* margin-right: 80px; */
+  transition:
+    transform 0.2s,
+    background 0.2s;
 }
 
 .item:hover {
   background: #3b5bdb;
   transform: scale(1.08);
 }
+
+/*****/
+
+/**********************/
+
+#title {
+
+}
+
+
+/**********************/

@@ -1,19 +1,27 @@
+const scriptUrl = new URL(document.currentScript.src);
+
 async function addHeader() {
-    const respHeader = await fetch("components/header/header.html");
-    const headerHtml = await respHeader.text();
-    document.getElementById("header-element").outerHTML = headerHtml
+    const url = new URL("./components/header/header.html", scriptUrl);
+
+    const resp = await fetch(url);
+    const Html = await resp.text();
+    document.getElementById("header-element").outerHTML = Html
 }
 
 async function addFooter() {
-    const respFooter = await fetch("components/footer/footer.html");
-    const footerHtml = await respFooter.text();
-    document.getElementById("footer-element").outerHTML = footerHtml
+    const url = new URL("./components/footer/footer.html", scriptUrl);
+
+    const resp = await fetch(url);
+    const Html = await resp.text();
+    document.getElementById("footer-element").outerHTML = Html
 }
 
 async function addMobileFooter() {
-    const respMobileFooter = await fetch("components/mobile-footer/mobile-footer.html");
-    const mobileFooterHtml = await respMobileFooter.text();
-    document.getElementById("mobile-footer-element").outerHTML = mobileFooterHtml
+    const url = new URL("./components/mobile-footer/mobile-footer.html", scriptUrl);
+    
+    const resp = await fetch(url);
+    const Html = await resp.text();
+    document.getElementById("mobile-footer-element").outerHTML = Html
 }
 
 addHeader()
@@ -21,14 +29,3 @@ addFooter()
 addMobileFooter()
 
 /**********************/
-
-const totalCasas = 20; 
-const mapa = document.getElementById('mapa');
-
-// Cria os números de 1 a 20
-for (let i = 1; i <= 12; i++) {
-  const item = document.createElement('div');
-  item.className = 'item';
-  item.textContent = i;
-  mapa.appendChild(item);
-}

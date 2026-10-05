@@ -4,7 +4,7 @@
     width: 100%;
     box-sizing: border-box;
     background-color: var(--destaque-1);
-    color: var(--fonte-destaque-1);
+    color: var(--texto-destaque-1);
     padding: 5ch 15ch;
 }
 
