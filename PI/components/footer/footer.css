@@ -5,20 +5,36 @@
     box-sizing: border-box;
     background-color: var(--destaque-1);
     color: var(--texto-destaque-1);
-    padding: 5ch 15ch;
+    font-size: 14pt;
+    padding: 5ch 15vw;
+
+    @media screen and (max-aspect-ratio: 1/0.9) {
+		padding-bottom: calc(5vh - 16px);
+	}
 }
 
 #footer-nav {
     max-width: 100%;
     display: flex;
     justify-content: space-between;
+    flex-direction: row;
+
+    @media screen and (max-aspect-ratio: 1/0.9) {
+		flex-direction: column;
+	}
 }
 
 .footer-content-items {
+    min-width: 10vw;
     display: flex;
     flex-direction: column;
 
-    a:not(:last-of-type), p:not(:last-of-type) {
-        margin-bottom: 12px;
+    a {
+        padding-bottom: 16px;
+
+        @media screen and (max-aspect-ratio: 1/0.9) {
+            text-align: center;
+            padding-bottom: 24px;
+	    }
     }
 }

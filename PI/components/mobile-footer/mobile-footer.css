@@ -1,50 +1,54 @@
 @import url(../../style.css);
 
 #mobile-footer {
-  background-color: var(--destaque-1);
-  width: 100%;
-  height: calc(10vh + 8vw);
-  position: sticky;
-  z-index: 100;
-  bottom: 0;
-  box-sizing: border-box;
-  display: none;
+	background-color: var(--destaque-1);
+	width: 100%;
+	height: calc(10vh + 8vw);
+	position: sticky;
+	z-index: 100;
+	bottom: 0;
+	box-sizing: border-box;
+	display: none;
 }
 
 @media screen and (max-aspect-ratio: 1/0.9) {
-  #mobile-footer {
-    display: block;
-  }
+	#mobile-footer {
+		display: block;
+	}
 }
 
 #mobile-footer table {
-  height: 100%;
-  width: 100%;
-  display: flex;
-  justify-content: space-evenly;
-  align-items: center;
-  box-sizing: border-box;
+	height: 100%;
+	width: 100%;
+	display: flex;
+	justify-content: space-evenly;
+	align-items: center;
+	box-sizing: border-box;
 }
 
 #mobile-footer tbody {
-  all:inherit;
+	all: inherit;
 }
 
 #mobile-footer tr {
-  all:inherit;
+	all: inherit;
 }
 
 #mobile-footer td {
-    height: 100%;
-    width: 25%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+	height: 100%;
+	width: 25%;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+#mobile-footer td:hover {
+	cursor: pointer;
 }
 
 .mobile-footer-icon {
-  margin: auto;
-  height: 9vh;
-  width: 9vh;
-  cursor: pointer;
+	margin: auto;
+	height: 9vh;
+	width: 9vh;
+	cursor: pointer;
 }
