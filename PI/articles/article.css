@@ -1,0 +1,14 @@
+#scroll-bar {
+	width: 100%;
+	height: 1.5vh;
+	position: sticky;
+	top: 0;
+	display: flex;
+    flex-direction: row;
+    background-color: #444;
+
+	#complete {
+		width: 0;
+		background-color: #34b1ff;
+	}
+}
