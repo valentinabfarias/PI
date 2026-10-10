@@ -1,4 +1,7 @@
 @import url(./fonts/fonts.css);
+@import url(./components/header/header.css);
+@import url(./components/footer/footer.css);
+@import url(./components/mobile-footer/mobile-footer.css);
 
 * {
 	margin: 0;
