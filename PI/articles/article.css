@@ -6,29 +6,50 @@
 	}
 }
 
-#sticky {
+#control-bar {
 	position: sticky;
 	top: 0;
 
 	#scroll-bar {
 		width: 100%;
-		height: 1.5vh;
+		height: 1.2vh;
 		display: flex;
 		flex-direction: row;
-		background-color: #444;
+		background-color: #222;
 
-		#complete {
+		#scroll-progress {
 			width: 0;
 			background-color: #34b1ff;
 		}
 	}
 
 	#article-options {
+		display: flex;
+		gap: 20px;
+		flex-direction: row;
+		justify-content: center;
+		align-items: center;
 		height: 15vh;
 		background-color: #1c1c6d;
+		color: white;
 
 		@media screen and (max-aspect-ratio: 1/0.9) {
 			height: 11.5vh;
+		}
+	}
+
+	#progress-bar {
+		width: 10%;
+		height: 1.5vh;
+		background-color: #000;
+		border-radius: 100vh;
+
+		#article-progress {
+			width: 0;
+			height: 100%;
+			background-color: #41fd41;
+			border-radius: 100vh;
+			transition: 0.5s;
 		}
 	}
 }
@@ -39,7 +60,13 @@
     align-items: center;
 
 	h1 {
+		display: flex;
 		margin-bottom: 20px;
+		text-align: center;
+
+		@media screen and (max-aspect-ratio: 1/0.9) {
+		padding: 0 10%;
+		}
 	}
 
 	#tags {
@@ -76,20 +103,27 @@ hr {
 	p {
 		padding-bottom: 15px;
 		font-size: 15pt;
+		line-height: 1.4;
 
 		@media screen and (max-aspect-ratio: 1/0.9) {
+			padding: 0 10%;
+			padding-bottom: 20px;
 			font-size: 14pt;
 		}
 	}
 	text-align: justify;
 
 	@media screen and (max-aspect-ratio: 1/0.9) {
-		padding: 0 10%;
 	}
 
 	h2 {
 		padding-top: 15px;
 		padding-bottom: 15px;
+
+		@media screen and (max-aspect-ratio: 1/0.9) {
+			display: flex;
+			justify-content: center;
+		}
 	}
 
 	.image-center {
@@ -97,7 +131,7 @@ hr {
 		display: flex;
 		justify-content: center;
 		img {
-			width: 80%;
+			width: 85%;
 			height: auto;
 			object-fit: cover;
 			
@@ -106,7 +140,7 @@ hr {
 			border-width: 1px;
 			border-radius: 3px;
 
-			margin-top: 15px;
+			margin-top: 30px;
 			margin-bottom: 30px;
 
 			@media screen and (max-aspect-ratio: 1/0.9) {
