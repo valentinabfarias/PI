@@ -52,7 +52,6 @@
 
 		.tag {
 			font-size: 12pt;
-			margin-top: 20px;
 			background-color: #ccc;
 			color: #444;
 			padding: 1px 6px;
@@ -74,7 +73,15 @@ hr {
 
 .paragraph {
 	padding: 0 5%;
-	p {padding-bottom: 15px;}
+	p {
+		padding-bottom: 15px;
+		font-size: 15pt;
+
+		@media screen and (max-aspect-ratio: 1/0.9) {
+			font-size: 14pt;
+		}
+	}
+	text-align: justify;
 
 	@media screen and (max-aspect-ratio: 1/0.9) {
 		padding: 0 10%;
@@ -111,6 +118,12 @@ hr {
 	}
 }
 
+#separate-from-buttons {
+	@media screen and (max-aspect-ratio: 1/0.9) {
+		margin-bottom: 0;
+	}
+}
+
 #nav-buttons {
 	width: 100%;
 	display: flex;
@@ -122,10 +135,16 @@ hr {
 	}
 
 	button {
-		width: 120px;
+		font-family: var(--fonte);
+		width: 140px;
 		height: 55px;
 		font-size: 16pt;
 		padding: 10px;
+
+		display: flex;
+		flex-direction: row;
+		justify-content: center;
+		align-items: center;
 
 		color: white;
 		border: 0;
@@ -134,16 +153,59 @@ hr {
 		+ button {
 			margin-left: 4vw;
 		}
-		.bold {
-		font-weight: bold;
-	}
+
+		.arrow {
+			font-size: 20pt;
+		}
+
+		.mobile-text {
+			font-size: 48pt;
+			height: 100%;
+			display: none;
+		}
+
+		.desktop-text {
+			display: block;
+		}
 	}
 
+	@media screen and (max-aspect-ratio: 1/0.9) {
+		padding: 0;
+		gap: 3.75vw;
+		padding: 2.5vw 0;
+
+		button {
+			width: 45vw;
+			height: 15vh;
+			border-radius: 10px;
+
+			+ button {
+				margin: 0;
+			}
+
+			.mobile-text {
+				display: flex;
+				align-items: center;
+				justify-content: center;
+				line-height: 0;
+			}
+
+			.desktop-text {
+				display: none;
+			}
+		}
+	}
+
+
 	#previous-page {
-		background-color: rgb(214, 86, 86);
+		background-color: #b22;
 	}
 
 	#next-page {
-		background-color: #1a88cc;
+		background-color: #16f;
+	}
+
+	#finish {
+		background-color: #181;
 	}
 }

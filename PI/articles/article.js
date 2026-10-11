@@ -1,4 +1,4 @@
-// Progress bar
+// barra de progresso
 function updateProgressBar() {
     let footer = document.getElementById("footer") || document.getElementById("footer-element");
     let footerHeight = footer.offsetHeight;
@@ -16,3 +16,30 @@ function updateProgressBar() {
 
 updateProgressBar();
 window.addEventListener('scroll', updateProgressBar);
+
+// construtor do artigo
+const article = document.querySelector('article')
+const numberPages = article.getAttribute('pages')
+const articleName = article.getAttribute('name')
+const pages = []
+
+let pageNumber = sessionStorage.getItem('pageNumber') | 0
+console.log(pageNumber)
+
+for (let i=1; i<=numberPages; i++) {
+    pages[i] = `./${articleName}/pages/page-${i}.html`
+}
+
+function previousPage() {
+    pageNumber--
+    console.log(pageNumber)
+    sessionStorage.setItem('pageNumber', pageNumber)
+}
+
+function nextPage() {
+    pageNumber++
+    console.log(pageNumber)
+    sessionStorage.setItem('pageNumber', pageNumber)
+}
+
+createPage()
