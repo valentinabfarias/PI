@@ -11,6 +11,16 @@
     @media screen and (max-aspect-ratio: 1/0.9) {
         padding-bottom: calc(5vh - 16px);
     }
+
+    hr {
+    border-radius: 1px;
+    border-color: white;
+    display: none;
+
+    @media screen and (max-aspect-ratio: 1/0.9) {
+		display: block;
+	}
+}
 }
 
 #footer-nav {
@@ -37,14 +47,4 @@
         padding-bottom: 24px;
         text-align: center;
     }
-}
-
-hr {
-    border-radius: 1px;
-    border-color: white;
-    display: none;
-
-    @media screen and (max-aspect-ratio: 1/0.9) {
-		display: block;
-	}
 }
