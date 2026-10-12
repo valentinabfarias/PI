@@ -30,7 +30,7 @@ console.log(jsonLinks);
 
 async function parseJsonData() {
 	const fetchPromises = jsonLinks.map(link => {
-        return fetch(`./json-map-images/${link}`)
+        return fetch(`../json-map-images/${link}`)
             .then(response => {
                 if (!response.ok) {
                     throw new Error(`Erro ao carregar ${link}: ${response.statusText}`);
@@ -55,38 +55,113 @@ async function parseJsonData() {
 
 const totalCasas = 12;
 const mapa = document.getElementById("mapa");
+const mapItems = []
 
-async function buildMapa() {
+async function buildMap() {
   	await parseJsonData();
 	jsonFiles.sort((a, b) => a.index - b.index);
   	console.log(jsonFiles);
   	console.log(jsonFiles.length);
 
   	for (let i = 0; i < totalCasas; i++) {
+
 		const item = document.createElement("div");
 		item.className = "item";
-
-		const itemTitle = document.createElement("div");
-		itemTitle.className = "item-title";
-
-		if (i >= jsonFiles.length) {
-			itemTitle.textContent = "Arquivo não encontrado"
-		} else {
-			itemTitle.textContent = `${jsonFiles[i].title}`;
-		}
-
-		const itemDesc = document.createElement("p");
-		itemDesc.className = "item-desc";
-
-		if (i >= jsonFiles.length) {
-			itemDesc.textContent = "Lorem ipsum dolor sit amet, consectetur adipiscing elit."
-		} else {
-			itemDesc.textContent = `${jsonFiles[i].desc}`;
-		}
-
+		item.setAttribute("id", `item-mapa-${i}`);
 		mapa.appendChild(item);
-		item.appendChild(itemTitle);
-		item.appendChild(itemDesc);
+
+
+			const itemTitle = document.createElement("div");
+			itemTitle.className = "item-title";
+
+
+			if (i >= jsonFiles.length) {
+				itemTitle.textContent = "Arquivo não encontrado"
+			} else {
+				itemTitle.textContent = `${jsonFiles[i].title}`;
+			}
+			item.appendChild(itemTitle);
+
+
+			const itemDesc = document.createElement("p");
+			itemDesc.className = "item-desc";
+			if (i >= jsonFiles.length) {
+				itemDesc.textContent = "Lorem ipsum dolor sit amet, consectetur adipiscing elit."
+			} else {
+				itemDesc.textContent = `${jsonFiles[i].desc}`;
+			}
+			item.appendChild(itemDesc);
+
+
+			const itemDetails = document.createElement("div");
+			itemDetails.className = "item-details";
+			item.appendChild(itemDetails);
+			item.querySelector(".item-details").style.display = "none";
+
+
+				const longDesc = document.createElement("p");
+				longDesc.className = "long-desc";
+
+				if (i >= jsonFiles.length) {
+					longDesc.textContent = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+				} else {
+					longDesc.textContent = `${jsonFiles[i].longDesc}`;
+				}
+				itemDetails.appendChild(longDesc);
+
+
+				const tagBar = document.createElement("div");
+				tagBar.className = "tag-bar"
+				itemDetails.appendChild(tagBar)
+				
+
+					if (i < jsonFiles.length && Array.isArray(jsonFiles[i].tags)) {
+						for (let t = 0; t < jsonFiles[i].tags.length; t++) {
+							const tag = document.createElement("div");
+							tag.className = "tag";
+							tag.textContent = `#${jsonFiles[i].tags[t]}`;
+							tagBar.appendChild(tag);
+						}
+					} else {
+						const tag = document.createElement("div");
+						tag.className = "tag";
+						tag.textContent = "#";
+						tagBar.appendChild(tag);
+					}
+
+
+				const itemNav = document.createElement("nav");
+				itemNav.className = "item-nav"
+				itemDetails.appendChild(itemNav);
+
+				const linkButton = document.createElement("button");
+				linkButton.className = "link-button"
+				if (i >= jsonFiles.length) {
+					linkButton.setAttribute("onclick", `window.location.href='/#'`);
+				} else {
+					linkButton.setAttribute("onclick", `window.location.href='./${jsonFiles[i].link}'`);
+				}
+				linkButton.innerHTML = "Iniciar"
+				itemDetails.appendChild(linkButton)
+
+		mapItems.push(item);
   	}
 }
-buildMapa();
+buildMap();
+
+async function handleItemClicks() {
+	await buildMap();
+	mapItems.forEach(function(e) {
+		e.addEventListener("click", function() {
+			mapItems.forEach(function(e) {
+				e.classList.remove("selected");
+				e.querySelector(".item-details").style.display = "none";
+				e.querySelector(".item-desc").style.display = "flex";
+			});
+			e.classList.add("selected");
+			e.querySelector(".item-details").style.display = "flex";
+			e.querySelector(".item-desc").style.display = "none";
+		});
+	});
+}
+handleItemClicks();

@@ -33,7 +33,7 @@ let pageIndex = sessionStorage.getItem("pageIndex") | 0;
 let pageNumber;
 
 for (let i = 1; i <= numberPages; i++) {
-	pages[i] = `./articles/${articleName}/pages/page-${i}.html`;
+	pages[i] = `./pages/articles/${articleName}/content/page-${i}.html`;
 	lastPage = pages.length - 1
 }
 

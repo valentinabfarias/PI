@@ -43,6 +43,10 @@
 	}*/
 }
 
+button {
+	font-family: var(--fonte);
+}
+
 body {
 	background-color: var(--fundo);
 	font-family: var(--fonte);

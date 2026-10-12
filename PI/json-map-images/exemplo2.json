@@ -2,5 +2,7 @@
     "index": 2,
     "title": "Exemplo 2",
     "desc": "Lorem ipsum dolor sit amet, consectetur adipiscing elit",
-    "tags": ["#ex", "em", "plo"]
+    "longDesc": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+    "tags": ["ex", "em", "plo"],
+    "link": "./preferences.html"
 }

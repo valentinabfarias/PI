@@ -2,5 +2,7 @@
     "index": 1,
     "title": "Título de exemplo - Lorem ipsum 1",
     "desc": "Lorem ipsum dolor sit amet, consectetur adipiscing elit",
-    "tags": ["#dolor-sit", "#amet", "#consectetur"]
+    "longDesc": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+    "tags": ["dolor-sit", "amet", "consectetur"],
+    "link": "articles/lipsum/lipsum.html"
 }
