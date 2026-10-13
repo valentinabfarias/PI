@@ -2,7 +2,7 @@
 
 #padding {
 	padding: 60px;
-	@media screen and (max-aspect-ratio: 1/0.9) {
+	@media (max-width: 480px) {
 		padding: 0;
 	}
 }
@@ -18,7 +18,7 @@
 	justify-content: center;
 	align-items: center;
 
-	@media screen and (max-aspect-ratio: 1/0.9) {
+	@media (max-width: 768px) {
 		margin-top: 12vw;
 		row-gap: 12vw;
 		grid-template-columns: repeat(1, 1fr);
@@ -32,7 +32,7 @@
 		align-self: center;
 		justify-self: center;
 
-		@media screen and (max-aspect-ratio: 1/0.9) {
+		@media (max-width: 480px) {
 			width: 80%;
 			height: auto;
 		}
@@ -54,7 +54,8 @@
 		border-color: #238c64;
 		padding: 10px 10px;
 
-		transition: linear 0.3s
+		transition: linear 0.3s;
+		transform: scale(1);
 	}
 
 	.item-title {
@@ -62,7 +63,7 @@
 		font-size: 18pt;
 		text-align: center;
 
-		@media screen and (max-aspect-ratio: 1/0.9) {
+		@media (max-width: 480px) {
 			font-size: 22pt;
 		}
 	}
@@ -73,7 +74,7 @@
 		font-size: 12pt;
 		padding: 0 10pt;
 
-		@media screen and (max-aspect-ratio: 1/0.9) {
+		@media (max-width: 480px) {
 			font-size: 14pt;
 		}
 	}
@@ -83,7 +84,7 @@
 		font-size: 14pt;
 		padding: 0 10pt;
 
-		@media screen and (max-aspect-ratio: 1/0.9) {
+		@media (max-width: 480px) {
 			font-size: 16pt;
 		}
 	}
@@ -97,7 +98,7 @@
 		padding: 2vh 0;
 		gap: 30px;
 
-		@media screen and (max-aspect-ratio: 1/0.9) {
+		@media (max-width: 480px) {
 			padding: 3vh 0;
 		}
 
@@ -113,7 +114,7 @@
 			border-radius: 10px;
 			border-width: 1px;
 
-			@media screen and (max-aspect-ratio: 1/0.9) {
+			@media (max-width: 480px) {
 				font-size: 14pt;
 			}
 		}
@@ -130,7 +131,7 @@
 		border-radius: 15px;
 		border-width: 3px;
 
-		@media screen and (max-aspect-ratio: 1/0.9) {
+		@media (max-width: 480px) {
 			width: 50%;
 			height: 80px;
 			font-size: 22pt;
@@ -169,16 +170,16 @@
 		border-color: #ff1e00;
 	}
 
-	@media screen and (max-aspect-ratio: 1/0.9) {
+	@media (max-width: 480px) {
 		.item:nth-of-type(even) {
-		border-color: #ce6b5d;
+			border-color: #ce6b5d;
 		}
 		.item:nth-of-type(even):hover {
-		border-color: #ff1e00;
+			border-color: #ff1e00;
 		}
 
 		.item:nth-of-type(odd) {
-		border-color: #238c64;
+			border-color: #238c64;
 		}
 		.item:nth-of-type(odd):hover {
 			border-color: #00de89;
@@ -194,7 +195,7 @@
 		border-color: #000000;
 		color: white;
 
-		@media screen and (max-aspect-ratio: 1/0.9) {
+		@media (max-width: 768px) {
 			grid-column: span 1;
 		}
 	}
@@ -203,7 +204,6 @@
 		transform: scale(1);
 		background-color: #0b4c33;
 		border-color: #000000;
-		cursor: default;
 	}
 
 	.item-details {

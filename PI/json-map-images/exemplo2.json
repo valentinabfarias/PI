@@ -1,8 +1,9 @@
 {
-    "index": 2,
+    "index": 1,
+    "name": "preferences",
     "title": "Exemplo 2",
     "desc": "Lorem ipsum dolor sit amet, consectetur adipiscing elit",
     "longDesc": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
     "tags": ["ex", "em", "plo"],
-    "link": "./preferences.html"
+    "pages": 1
 }

@@ -1,7 +1,7 @@
 @import url(../../style.css);
 
 #padding {
-	@media screen and (max-aspect-ratio: 1/0.9) {
+	@media (max-width: 480px) {
 		padding-top: 30px;
 	}
 }
@@ -9,6 +9,7 @@
 #control-bar {
 	position: sticky;
 	top: 0;
+	z-index: 1;
 
 	#scroll-bar {
 		width: 100%;
@@ -33,7 +34,7 @@
 		background-color: #1c1c6d;
 		color: white;
 
-		@media screen and (max-aspect-ratio: 1/0.9) {
+		@media (max-width: 480px) {
 			height: 11.5vh;
 		}
 	}
@@ -64,7 +65,7 @@
 		margin-bottom: 20px;
 		text-align: center;
 
-		@media screen and (max-aspect-ratio: 1/0.9) {
+		@media (max-width: 480px) {
 		padding: 0 10%;
 		}
 	}
@@ -91,7 +92,7 @@
 	}
 }
 
-hr {
+#title-area hr, #separate-from-buttons {
 	margin-top: 15px;
 	margin-bottom: 30px;
 	width: 100%;
@@ -105,7 +106,7 @@ hr {
 		font-size: 15pt;
 		line-height: 1.4;
 
-		@media screen and (max-aspect-ratio: 1/0.9) {
+		@media (max-width: 480px) {
 			padding: 0 10%;
 			padding-bottom: 20px;
 			font-size: 14pt;
@@ -113,14 +114,14 @@ hr {
 	}
 	text-align: justify;
 
-	@media screen and (max-aspect-ratio: 1/0.9) {
+	@media (max-width: 480px) {
 	}
 
 	h2 {
 		padding-top: 15px;
 		padding-bottom: 15px;
 
-		@media screen and (max-aspect-ratio: 1/0.9) {
+		@media (max-width: 480px) {
 			display: flex;
 			justify-content: center;
 		}
@@ -143,7 +144,7 @@ hr {
 			margin-top: 30px;
 			margin-bottom: 30px;
 
-			@media screen and (max-aspect-ratio: 1/0.9) {
+			@media (max-width: 480px) {
 				width: 100%;
 				height: auto;
 				border-radius: 0;
@@ -153,7 +154,7 @@ hr {
 }
 
 #separate-from-buttons {
-	@media screen and (max-aspect-ratio: 1/0.9) {
+	@media (max-width: 480px) {
 		margin-bottom: 0;
 	}
 }
@@ -203,7 +204,7 @@ hr {
 		}
 	}
 
-	@media screen and (max-aspect-ratio: 1/0.9) {
+	@media (max-width: 480px) {
 		padding: 0;
 		gap: 3.75vw;
 		padding: 2.5vw 0;
@@ -234,12 +235,24 @@ hr {
 	#previous-page {
 		background-color: #b22;
 	}
+	#previous-page:hover {
+		background-color: #f86;
+		color: black;
+	}
 
 	#next-page {
 		background-color: #16f;
 	}
+	#next-page:hover {
+		background-color: #5df;
+		color: black;
+	}
 
 	#finish {
 		background-color: #181;
+	}
+	#finish:hover {
+		background-color: #0d1;
+    	color: black;
 	}
 }

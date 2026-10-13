@@ -1,6 +1,7 @@
 @import url(../../style.css);
 
 #footer {
+    z-index: 1;
     width: 100%;
     box-sizing: border-box;
     background-color: var(--destaque-1);
@@ -8,19 +9,19 @@
     font-size: 14pt;
     padding: 5ch 15vw;
 
-    @media screen and (max-aspect-ratio: 1/0.9) {
+    @media (max-width: 480px) {
         padding-bottom: calc(5vh - 16px);
     }
 
     hr {
-    border-radius: 1px;
-    border-color: white;
-    display: none;
+        border-radius: 1px;
+        border-color: white;
+        display: none;
 
-    @media screen and (max-aspect-ratio: 1/0.9) {
-		display: block;
-	}
-}
+        @media (max-width: 480px) {
+            display: block;
+        }
+    }
 }
 
 #footer-nav {
@@ -29,7 +30,7 @@
     justify-content: space-between;
     flex-direction: row;
 
-    @media screen and (max-aspect-ratio: 1/0.9) {
+    @media (max-width: 480px) {
         flex-direction: column;
     }
 }
@@ -43,7 +44,7 @@
         padding-bottom: 16px;
     }
 
-    @media screen and (max-aspect-ratio: 1/0.9) {
+    @media (max-width: 480px) {
         padding-bottom: 24px;
         text-align: center;
     }

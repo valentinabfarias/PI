@@ -59,8 +59,18 @@ const mapItems = []
 
 async function buildMap() {
   	await parseJsonData();
-	jsonFiles.sort((a, b) => a.index - b.index);
-  	console.log(jsonFiles);
+
+	const articles = jsonFiles
+	
+	for (let i = 0; i < articles.length; i++) {
+		articles[i].currentPage = null
+	}
+
+	console.log(articles)
+
+	sessionStorage.setItem("articles", JSON.stringify(articles))
+
+  	console.log(JSON.parse(sessionStorage.getItem("articles")));
   	console.log(jsonFiles.length);
 
   	for (let i = 0; i < totalCasas; i++) {
@@ -139,29 +149,50 @@ async function buildMap() {
 				if (i >= jsonFiles.length) {
 					linkButton.setAttribute("onclick", `window.location.href='/#'`);
 				} else {
-					linkButton.setAttribute("onclick", `window.location.href='./${jsonFiles[i].link}'`);
+					linkButton.setAttribute("onclick", `window.location.href='../pages/articles/${jsonFiles[i].name}/${jsonFiles[i].name}.html'`);
+					linkButton.setAttribute("value", `${jsonFiles[i].index}` )
 				}
+				linkButton.setAttribute("type", "button")
 				linkButton.innerHTML = "Iniciar"
 				itemDetails.appendChild(linkButton)
 
 		mapItems.push(item);
   	}
 }
-buildMap();
 
 async function handleItemClicks() {
 	await buildMap();
 	mapItems.forEach(function(e) {
 		e.addEventListener("click", function() {
-			mapItems.forEach(function(e) {
+			if (e.classList.contains("selected")) {
 				e.classList.remove("selected");
 				e.querySelector(".item-details").style.display = "none";
 				e.querySelector(".item-desc").style.display = "flex";
-			});
-			e.classList.add("selected");
-			e.querySelector(".item-details").style.display = "flex";
-			e.querySelector(".item-desc").style.display = "none";
+			} else {
+				mapItems.forEach(function(e) {
+					e.classList.remove("selected");
+					e.querySelector(".item-details").style.display = "none";
+					e.querySelector(".item-desc").style.display = "flex";
+				});
+
+				e.classList.add("selected");
+				e.querySelector(".item-details").style.display = "flex";
+				e.querySelector(".item-desc").style.display = "none";
+			};
 		});
+	});
+
+	const linkButtons = document.querySelectorAll(".link-button")
+	console.log(linkButtons)
+
+	linkButtons.forEach(function(e) {
+		e.addEventListener("click", function() {
+			sessionStorage.setItem("articleIndex", e.value);
+			// console.log(sessionStorage.getItem("articleIndex"))
+			// console.log(JSON.parse(sessionStorage.getItem("articles"))[e.value])
+
+			console.log(JSON.parse(sessionStorage.getItem("articles"))[e.value].currentPage);
+		})
 	});
 }
 handleItemClicks();

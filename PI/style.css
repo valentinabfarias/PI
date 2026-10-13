@@ -2,6 +2,7 @@
 @import url(./components/header/header.css);
 @import url(./components/footer/footer.css);
 @import url(./components/mobile-footer/mobile-footer.css);
+@import url(./components/form-popup/form-popup.css);
 
 * {
 	margin: 0;
@@ -47,6 +48,10 @@ button {
 	font-family: var(--fonte);
 }
 
+button:hover {
+	cursor: pointer;
+}
+
 body {
 	background-color: var(--fundo);
 	font-family: var(--fonte);
@@ -63,7 +68,7 @@ main {
 		margin: 0 10vw;
 	}
 
-	@media screen and (max-aspect-ratio: 1/0.9) {
+	@media (max-width: 480px) {
 		margin: 0 0;
 	}
 }
@@ -87,7 +92,7 @@ main {
 	padding: 40px;
 	padding-bottom: 0;
 
-	@media screen and (max-aspect-ratio: 1/0.9) {
+	@media (max-width: 480px) {
 		padding: 0;
 	}
 }
@@ -107,7 +112,7 @@ main {
 	padding-bottom: 20px;
 	font-size: 16px;
 
-	@media screen and (max-aspect-ratio: 1/0.9) {
+	@media (max-width: 480px) {
 		padding: 20px;
 	}
 }
@@ -117,7 +122,7 @@ main {
 	padding: 16px;
 	border-radius: 12px;
 
-	@media screen and (max-aspect-ratio: 1/0.9) {
+	@media (max-width: 480px) {
 		border-radius: 0;
 	}
 }
@@ -125,7 +130,7 @@ main {
 .subtitle {
 	font-size: 22px;
 
-	@media screen and (max-aspect-ratio: 1/0.9) {
+	@media (max-width: 480px) {
 		text-align: center;
 	}
 }
@@ -156,7 +161,7 @@ main {
 	border-style: solid;
 	border-radius: 8px;
 
-	@media screen and (max-aspect-ratio: 1/0.9) {
+	@media (max-width: 480px) {
 		max-width: 60vw;
 		padding: 0.5rem;
 		width: 100%;
