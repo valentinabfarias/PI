@@ -263,10 +263,10 @@
 		color: black;
 	}
 
-	#finish {
+	#finish, #submit-form {
 		background-color: #181;
 	}
-	#finish:hover {
+	#finish:hover, #submit-form:hover {
 		background-color: #0d1;
     	color: black;
 	}
@@ -437,6 +437,27 @@
 
 	.next-question:hover {
 		background-color: #2c56ff;
+		cursor: pointer;
+	}
+
+	#submit-form {
+		font-family: var(--fonte);
+		transition: 0.1s;
+		width: 220px;
+		height: 70px;
+		font-size: 16pt;
+		align-self: center;
+
+		border-radius: 10px;
+		border-style: none;
+
+		background-color: #181;
+		color: white;
+	}
+
+	#submit-form:hover {
+		background-color: #0d1;
+    	color: black;
 		cursor: pointer;
 	}
 }
