@@ -55,14 +55,20 @@ async function parseJsonData() {
 	jsonFiles.sort((a, b) => a.index - b.index);
 }
 
-const totalCasas = 12;
 const mapa = document.getElementById("mapa");
 const mapItems = []
+
+if (sessionStorage.getItem("mapIndex") === undefined || sessionStorage.getItem("mapIndex") === null) {
+	sessionStorage.setItem("mapIndex", 0)
+}
+
+let mapIndex = sessionStorage.getItem("mapIndex")
 
 async function buildMap() {
   	await parseJsonData();
 
 	const articles = jsonFiles
+	const totalCasas = (articles.length + 4);
 	
 	for (let i = 0; i < articles.length; i++) {
 		
@@ -81,8 +87,12 @@ async function buildMap() {
   	for (let i = 0; i < totalCasas; i++) {
 
 		const item = document.createElement("div");
-		item.className = "item";
+		item.classList.add("item")
 		item.setAttribute("id", `item-mapa-${i}`);
+		if (i > mapIndex) {
+			item.classList.add("disabled")
+		}
+		
 		mapa.appendChild(item);
 
 
@@ -167,23 +177,27 @@ async function buildMap() {
 async function handleItemClicks() {
 	await buildMap();
 	mapItems.forEach(function(e) {
-		e.addEventListener("click", function() {
-			if (e.classList.contains("selected")) {
-				e.classList.remove("selected");
-				e.querySelector(".item-details").style.display = "none";
-				e.querySelector(".item-desc").style.display = "flex";
-			} else {
-				mapItems.forEach(function(e) {
+		if (!e.classList.contains("disabled")) {
+			e.addEventListener("click", function() {
+				if (e.classList.contains("selected")) {
 					e.classList.remove("selected");
 					e.querySelector(".item-details").style.display = "none";
 					e.querySelector(".item-desc").style.display = "flex";
-				});
+				} else {
+					mapItems.forEach(function(e) {
+						e.classList.remove("selected");
+						e.querySelector(".item-details").style.display = "none";
+						e.querySelector(".item-desc").style.display = "flex";
+					});
 
-				e.classList.add("selected");
-				e.querySelector(".item-details").style.display = "flex";
-				e.querySelector(".item-desc").style.display = "none";
-			};
-		});
+					e.classList.add("selected");
+					e.querySelector(".item-details").style.display = "flex";
+					e.querySelector(".item-desc").style.display = "none";
+				};
+			});
+		} else {
+			return
+		}
 	});
 
 	const linkButtons = document.querySelectorAll(".link-button")
@@ -195,6 +209,7 @@ async function handleItemClicks() {
 			document.cookie=`article_index${e.value}`
 
 			console.log(JSON.parse(sessionStorage.getItem("articles"))[e.value].currentPage);
+			sessionStorage.setItem("mapIndex", e.value)
 		})
 	});
 }

@@ -80,11 +80,55 @@ main {
 
 /*****/
 
-#hero-test {
+#hero-welcome {
+	display: flex;
+	justify-content: center;
 	width: 100%;
+	height: auto;
 	box-sizing: border-box;
 	height: 300px;
-	background-color: #34502b;
+	background-image: url(./assets/welcome-image.jpg);
+	background-size: cover;
+	background-clip: cont;
+	object-fit: cover;
+	overflow: hidden;
+}
+
+#hero-welcome-gradient {
+	display: flex;
+	width: 100%;
+	background: linear-gradient(to bottom, #0000 30%, #34502b 70%);
+}
+
+#hero-welcome-formatting {
+	width: 100%;
+	padding: 40px;
+	padding-bottom: 30px;
+	display: flex;
+	align-items: flex-end;
+
+	@media (max-width: 480px) {
+		justify-content: center;
+	}
+}
+
+#hero-welcome-text {
+	width: 100%;
+	display: flex;
+
+	color: white;
+	font-weight: bold;
+	font-size: 22pt;
+	text-wrap: wrap;
+
+	pre {
+		font-family: var(--fonte);
+	}
+
+	@media (max-width: 480px) {
+		justify-content: center;
+		text-align: center;
+	}
 }
 
 #conteudo {

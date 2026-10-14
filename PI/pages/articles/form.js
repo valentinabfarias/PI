@@ -29,6 +29,9 @@ let questionResults = []
 let rightAnswers;
 
 function updateQuestions() {
+    if (currentQuestion > 5 || currentQuestion === 0) {
+        currentQuestion = 1
+    }
     questionIndex = currentQuestion - 1
     document.getElementById(`question-${currentQuestion}-display`).style.display = "flex"
 
@@ -73,6 +76,7 @@ async function addQuestions() {
         const url = new URL(`${questions[i]}`, scriptUrl);
         const resp = await fetch(url);
         const Html = await resp.text();
+        
         articleForm.insertAdjacentHTML("afterbegin", Html)
 
         formItems.push(document.getElementsByClassName(`item-question-${i+1}`))
@@ -131,10 +135,13 @@ function nextQuestion() {
 }
 
 function endForm() {
-    alert(`${rightAnswers}/${lastQuestion} acertos!!! (teste)`)
+    // alert(`${rightAnswers}/${lastQuestion} acertos!!! (teste)`)
     articles[articleIndex].currentPage = 1;
     articles[articleIndex].currentQuestion = 1;
 
     sessionStorage.setItem("articles", JSON.stringify(articles));
-    window.location.href = "../mapa.html"
+    
+    const mapIndex = sessionStorage.getItem("mapIndex")
+    sessionStorage.setItem("mapIndex", (parseInt(mapIndex) + 1))
+    alert(sessionStorage.getItem("mapIndex"))
 }

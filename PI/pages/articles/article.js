@@ -1,3 +1,5 @@
+console.log(sessionStorage.getItem("mapIndex"))
+
 // barra de scroll
 if (document.getElementById("scroll-progress") !== null) {
 	function updateScrollBar() {
@@ -43,7 +45,7 @@ const pages = [];
 let lastPage;
 
 sessionStorage.setItem("pageIndex", (articles[articleIndex].currentPage) - 1)
-let pageIndex = sessionStorage.getItem("pageIndex")
+let pageIndex = parseInt(sessionStorage.getItem("pageIndex"))
 let currentPage;
 
 for (let i = 1; i <= numberPages; i++) {

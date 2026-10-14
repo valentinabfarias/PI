@@ -254,6 +254,17 @@
 		background-color: #f86;
 		color: black;
 	}
+	#previous-page:disabled {
+		background-color: #aaa;
+	}
+	#previous-page:disabled:hover {
+		background-color: #aaa;
+		color: white;
+		cursor: default;
+		span:hover {
+			cursor: default;
+		}
+	}
 
 	#next-page {
 		background-color: #16f;
