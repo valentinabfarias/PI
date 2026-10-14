@@ -1,5 +1,3 @@
-console.log(sessionStorage.getItem("articleIndex"))
-
 // barra de scroll
 if (document.getElementById("scroll-progress") !== null) {
 	function updateScrollBar() {
@@ -27,7 +25,6 @@ window.addEventListener("scroll", updateScrollBar);
 
 // construtor do artigo
 const title = document.querySelector("title").innerHTML;
-sessionStorage.setItem("title", title)
 
 let titleBar = title;
 console.log(sessionStorage.getItem("title"))
@@ -45,7 +42,8 @@ console.log(articleName)
 const pages = [];
 let lastPage;
 
-let pageIndex = sessionStorage.getItem("pageIndex") | 0;
+sessionStorage.setItem("pageIndex", (articles[articleIndex].currentPage) - 1)
+let pageIndex = sessionStorage.getItem("pageIndex")
 let currentPage;
 
 for (let i = 1; i <= numberPages; i++) {
@@ -165,7 +163,9 @@ function popupReturn() {
 }
 
 function formProceed() {
-	JSON.parse(sessionStorage.getItem("currentArticle")).currentPage = currentPage
-	console.log(sessionStorage.getItem("currentArticle"))
-	window.location.href = "./form.php"
+	if (articles[articleIndex].currentQuestion == null) {
+		articles[articleIndex].currentQuestion = 1
+	}
+		sessionStorage.setItem("articles", JSON.stringify(articles));
+	window.location.href = "./form.html"
 }

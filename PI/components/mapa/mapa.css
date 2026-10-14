@@ -19,7 +19,6 @@
 	align-items: center;
 
 	@media (max-width: 768px) {
-		margin-top: 12vw;
 		row-gap: 12vw;
 		grid-template-columns: repeat(1, 1fr);
 	}

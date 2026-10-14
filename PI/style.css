@@ -46,10 +46,15 @@
 
 button {
 	font-family: var(--fonte);
+	transition: 0.1s;
 }
 
 button:hover {
 	cursor: pointer;
+}
+
+input {
+	accent-color: var(--destaque-1);
 }
 
 body {

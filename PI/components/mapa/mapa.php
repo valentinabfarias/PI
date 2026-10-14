@@ -1,9 +1,9 @@
 <?php
+session_start();
 header('Content-Type: application/javascript');
  
 $username = $_SESSION['username'] ?? 'Guest';
 $password = $_SESSION['password'] ?? '';
-
 /**********************/
 
 $dir = '../../json-map-images/';
@@ -18,12 +18,14 @@ $jsonFiles = array_diff($raw, array('.', '..'));
 
 $jsonFiles = array_values($jsonFiles);
 
-$jF_to_json = json_encode($jsonFiles)
+$_SESSION['articles'] = $jsonFiles;
+
+$jsonFiles_to_js = json_encode($jsonFiles)
 ?>
 
 /*********************/
 
-const jsonLinks = <?php echo $jF_to_json;?>;
+const jsonLinks = <?php echo $jsonFiles_to_js;?>;
 const jsonFiles = [];
 
 console.log(jsonLinks);
@@ -63,7 +65,10 @@ async function buildMap() {
 	const articles = jsonFiles
 	
 	for (let i = 0; i < articles.length; i++) {
-		articles[i].currentPage = null
+		
+		if(articles[i].currentPage = null) {
+			articles[i].currentPage = 1
+		}
 	}
 
 	console.log(articles)
@@ -83,7 +88,6 @@ async function buildMap() {
 
 			const itemTitle = document.createElement("div");
 			itemTitle.className = "item-title";
-
 
 			if (i >= jsonFiles.length) {
 				itemTitle.textContent = "Arquivo não encontrado"
@@ -188,8 +192,7 @@ async function handleItemClicks() {
 	linkButtons.forEach(function(e) {
 		e.addEventListener("click", function() {
 			sessionStorage.setItem("articleIndex", e.value);
-			// console.log(sessionStorage.getItem("articleIndex"))
-			// console.log(JSON.parse(sessionStorage.getItem("articles"))[e.value])
+			document.cookie=`article_index${e.value}`
 
 			console.log(JSON.parse(sessionStorage.getItem("articles"))[e.value].currentPage);
 		})
