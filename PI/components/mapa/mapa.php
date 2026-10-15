@@ -89,11 +89,14 @@ async function buildMap() {
 		const item = document.createElement("div");
 		item.classList.add("item")
 		item.setAttribute("id", `item-mapa-${i}`);
+		item.setAttribute("role", "button")
+		item.ariaHidden = "true"
 		if (i > mapIndex) {
 			item.classList.add("disabled")
 		}
 		
 		mapa.appendChild(item);
+		
 
 
 			const itemTitle = document.createElement("div");
@@ -158,13 +161,13 @@ async function buildMap() {
 				itemNav.className = "item-nav"
 				itemDetails.appendChild(itemNav);
 
-				const linkButton = document.createElement("button");
+				const linkButton = document.createElement("a");
 				linkButton.className = "link-button"
 				if (i >= jsonFiles.length) {
-					linkButton.setAttribute("onclick", `window.location.href='/#'`);
+					linkButton.setAttribute("href", `/#`);
 				} else {
-					linkButton.setAttribute("onclick", `window.location.href='../pages/articles/${jsonFiles[i].name}/${jsonFiles[i].name}.html'`);
-					linkButton.setAttribute("value", `${jsonFiles[i].index}` )
+					linkButton.setAttribute("href", `../pages/articles/${jsonFiles[i].name}/${jsonFiles[i].name}.html`);
+					linkButton.setAttribute("data-val", `${jsonFiles[i].index}` )
 				}
 				linkButton.setAttribute("type", "button")
 				linkButton.innerHTML = "Iniciar"
@@ -172,6 +175,7 @@ async function buildMap() {
 
 		mapItems.push(item);
   	}
+	mapa.ariaHidden = "false"
 }
 
 async function handleItemClicks() {
@@ -192,6 +196,7 @@ async function handleItemClicks() {
 
 					e.classList.add("selected");
 					e.querySelector(".item-details").style.display = "flex";
+					e.querySelector.setAttribute("aria-live", "polite")
 					e.querySelector(".item-desc").style.display = "none";
 				};
 			});
@@ -205,11 +210,11 @@ async function handleItemClicks() {
 
 	linkButtons.forEach(function(e) {
 		e.addEventListener("click", function() {
-			sessionStorage.setItem("articleIndex", e.value);
-			document.cookie=`article_index${e.value}`
+			sessionStorage.setItem("articleIndex", e.dataset.val);
+			document.cookie=`article_index${e.dataset.val}`
 
-			console.log(JSON.parse(sessionStorage.getItem("articles"))[e.value].currentPage);
-			sessionStorage.setItem("mapIndex", e.value)
+			console.log(JSON.parse(sessionStorage.getItem("articles"))[e.dataset.val].currentPage);
+			sessionStorage.setItem("mapIndex", e.dataset.val)
 		})
 	});
 }

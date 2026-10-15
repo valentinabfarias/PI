@@ -20,6 +20,7 @@ let articleForm = document.getElementById("article-form")
 for (let i = 0; i < articles[articleIndex].questions; i++) {
     questions[i] = `./pages/articles/${articles[articleIndex].name}/content/form-content/question-${i+1}.html`;
     lastQuestion = questions.length
+    document.getElementById("form-progress-bar").ariaValueMax = lastQuestion
 }
 
 let formItems = []
@@ -36,6 +37,8 @@ function updateQuestions() {
     document.getElementById(`question-${currentQuestion}-display`).style.display = "flex"
 
     formProgress.style.width = `${((currentQuestion - 1) * 100 / (lastQuestion - 1))}%`
+    document.getElementById("form-progress-bar").ariaValueNow = currentQuestion
+
     questionCounter.innerHTML = `${currentQuestion}/${lastQuestion}`
 
     titleBar = `(Questão ${currentQuestion}/${lastQuestion}) ${title}`

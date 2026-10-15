@@ -16,6 +16,7 @@ if (document.getElementById("scroll-progress") !== null) {
 			progress = 100;
 		}
 		progressBar.style.width = progress + "%";
+		document.getElementById("scroll-bar").ariaValueNow = progress;
 	}
 	updateScrollBar();
 }
@@ -51,6 +52,7 @@ let currentPage;
 for (let i = 1; i <= numberPages; i++) {
 	pages[i] = `./pages/articles/${articleName}/content/page-${i}.html`;
 	lastPage = pages.length - 1
+	document.getElementById("progress-bar").ariaValueMax = lastPage;
 }
 
 // inicialização da página
@@ -63,6 +65,7 @@ async function updatePage() {
 	}
 
 	currentPage = pageIndex + 1;
+	document.getElementById("progress-bar").ariaValueNow = currentPage;
 
 	// redefinição do arquivo salvo na sessão
 
