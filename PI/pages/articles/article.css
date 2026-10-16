@@ -351,6 +351,7 @@
 
 .form-item:hover, .form-item input:hover, .form-item label:hover {
 	cursor: pointer;
+	filter: brightness(80%);
 }
 
 .form-item:nth-of-type(odd) {
@@ -368,8 +369,8 @@
 }
 
 .checked:hover .checked input:hover, .checked label:hover{
-	cursor: default;
-	filter: none;
+	cursor: default !important;
+	filter: none !important;
 }
 
 .form-button {

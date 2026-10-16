@@ -2,8 +2,8 @@ const articles = JSON.parse(sessionStorage.getItem("articles"))
 const articleIndex = sessionStorage.getItem("articleIndex")
 // console.log(articles[articleIndex].currentQuestion)
 
-const formProgress = document.getElementById("form-progress");
-const questionCounter = document.getElementById("question-counter");
+const formProgress = document.getElementById("article-progress");
+const questionCounter = document.getElementById("page-counter");
 
 const title = document.querySelector("title").innerHTML;
 let titleBar = title;
@@ -20,7 +20,7 @@ let articleForm = document.getElementById("article-form")
 for (let i = 0; i < articles[articleIndex].questions; i++) {
     questions[i] = `./pages/articles/${articles[articleIndex].name}/content/form-content/question-${i+1}.html`;
     lastQuestion = questions.length
-    document.getElementById("form-progress-bar").ariaValueMax = lastQuestion
+    document.getElementById("progress-bar").ariaValueMax = lastQuestion
 }
 
 let formItems = []
@@ -37,7 +37,7 @@ function updateQuestions() {
     document.getElementById(`question-${currentQuestion}-display`).style.display = "flex"
 
     formProgress.style.width = `${((currentQuestion - 1) * 100 / (lastQuestion - 1))}%`
-    document.getElementById("form-progress-bar").ariaValueNow = currentQuestion
+    document.getElementById("progress-bar").ariaValueNow = currentQuestion
 
     questionCounter.innerHTML = `${currentQuestion}/${lastQuestion}`
 

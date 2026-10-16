@@ -24,6 +24,7 @@ if (document.getElementById("scroll-progress") !== null) {
 // barra de leitura
 const articleProgress = document.getElementById("article-progress")
 const pageCounter = document.getElementById("page-counter")
+const pageCounterHidden = document.getElementById("page-counter-hidden")
 window.addEventListener("scroll", updateScrollBar);
 
 // construtor do artigo
@@ -49,8 +50,8 @@ sessionStorage.setItem("pageIndex", (articles[articleIndex].currentPage) - 1)
 let pageIndex = parseInt(sessionStorage.getItem("pageIndex"))
 let currentPage;
 
-for (let i = 1; i <= numberPages; i++) {
-	pages[i] = `./pages/articles/${articleName}/content/page-${i}.html`;
+for (let i = 0; i < numberPages+1; i++) {
+	pages[i] = `./pages/articles/${articleName}/content/page-${i+1}.html`;
 	lastPage = pages.length - 1
 	document.getElementById("progress-bar").ariaValueMax = lastPage;
 }
@@ -71,6 +72,14 @@ async function updatePage() {
 
 	articles[articleIndex].currentPage = currentPage;
 	sessionStorage.setItem("articles", JSON.stringify(articles));
+
+	/***************************/
+
+	/*const controlUrl = new URL(`../../components/control-bar/control-bar.html`, scriptUrl);
+
+	const resp = await fetch(articleUrl);
+	const Html = await resp.text();
+	article.innerHTML = Html;*/
 	
 	articleProgress.style.width = `${((currentPage - 1) * 100 / (lastPage - 1))}%`
 
@@ -78,11 +87,14 @@ async function updatePage() {
 		articleProgress.style.width = `1%`
 	}
 
-	pageCounter.innerHTML = "Página " + currentPage + "/" + lastPage
+	pageCounter.innerHTML = `Página ${currentPage}/${lastPage}`
+	pageCounterHidden.innerHTML = `Página ${currentPage} de ${lastPage}`
 
-	const url = new URL(`${pages[currentPage]}`, scriptUrl);
+	/***************************/
 
-	const resp = await fetch(url);
+	const articleUrl = new URL(`${pages[pageIndex]}`, scriptUrl);
+
+	const resp = await fetch(articleUrl);
 	const Html = await resp.text();
 	article.innerHTML = Html;
 
@@ -105,7 +117,6 @@ async function updatePage() {
 		}
 	}
 }
-updatePage();
 
 // botões
 
@@ -174,3 +185,141 @@ function formProceed() {
 		sessionStorage.setItem("articles", JSON.stringify(articles));
 	window.location.href = "./form.html"
 }
+
+/******************************************/
+
+const synth = window.speechSynthesis;
+
+let allElements = []
+let currentPageElements = []
+let synthIndex = 0
+let audio;
+let isPlaying = false
+
+let playButton = document.getElementById("play")
+
+async function countSynthElements() {
+    await updatePage();
+
+    allElements = [];
+
+    for (let i = 0; i < lastPage; i++) {
+        const articleUrl = new URL(pages[i], scriptUrl);
+        const resp = await fetch(articleUrl);
+        const html = await resp.text();
+        const doc = new DOMParser().parseFromString(html, "text/html");
+
+        const elements = Array.from(
+            doc.querySelectorAll("h1, p, h2, img")
+        );
+
+        allElements.push(elements);
+    }
+
+    await updateSynth();
+
+	console.log("speechSynthesis" in window);
+	console.log(currentPageElements);
+	console.log(pages[pageIndex]);
+}
+
+async function updateSynth() {
+    await updatePage();
+
+    currentPageElements = [
+        pageCounterHidden,
+        ...(allElements[pageIndex] ?? [])
+    ];
+
+    synthIndex = 0;
+}
+
+function getSpeechText(element) {
+    if (element instanceof Element && element.tagName === "img") {
+        return element.alt || "";
+    }
+    return element?.textContent?.trim() || "";
+}
+
+function speakNext() {
+    if (!isPlaying || synth.paused) return;
+
+    while (synthIndex < currentPageElements.length) {
+        const element = currentPageElements[synthIndex];
+        const sentence = getSpeechText(element);
+
+        synthIndex++;
+
+        if (!sentence) continue;
+
+        const utterance = new SpeechSynthesisUtterance(sentence);
+		utterance.lang = "pt-br"
+
+        utterance.onend = () => {
+            if (isPlaying && !synth.paused) {
+                speakNext();
+            }
+        };
+
+        utterance.onerror = (event) => {
+            console.error("Speech synthesis error:", event.error);
+
+            if (isPlaying && !synth.paused) {
+                speakNext();
+            }
+        };
+
+        synth.speak(utterance);
+        return;
+    }
+
+    isPlaying = false;
+    playButton.textContent = "▶";
+}
+
+function play() {
+    playButton.textContent = "⏸";
+    playButton.onclick = pause;
+
+    if (synth.paused) {
+        isPlaying = true;
+        synth.resume();
+        return;
+    }
+
+    if (isPlaying) {
+		return;
+	}
+
+    isPlaying = true;
+    speakNext();
+}
+
+function pause() {
+    isPlaying = false;
+    synth.pause();
+
+    playButton.textContent = "▶";
+    playButton.onclick = play;
+}
+
+function rewind() {
+	if (synthIndex < 1) {
+		return
+	} else {
+		synth.cancel()
+		synthIndex = synthIndex - 2
+		getSpeechText(currentPageElements[synthIndex])
+	}
+}
+
+function forward() {
+	if (synthIndex > currentPageElements.length) {
+		return
+	} else {
+		synth.cancel()
+		getSpeechText(currentPageElements[synthIndex])
+	}
+}
+
+countSynthElements();

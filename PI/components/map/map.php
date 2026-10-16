@@ -55,7 +55,7 @@ async function parseJsonData() {
 	jsonFiles.sort((a, b) => a.index - b.index);
 }
 
-const mapa = document.getElementById("mapa");
+const map = document.getElementById("map");
 const mapItems = []
 
 if (sessionStorage.getItem("mapIndex") === undefined || sessionStorage.getItem("mapIndex") === null) {
@@ -88,14 +88,14 @@ async function buildMap() {
 
 		const item = document.createElement("div");
 		item.classList.add("item")
-		item.setAttribute("id", `item-mapa-${i}`);
+		item.setAttribute("id", `item-map-${i}`);
 		item.setAttribute("role", "button")
 		item.ariaHidden = "true"
 		if (i > mapIndex) {
 			item.classList.add("disabled")
 		}
 		
-		mapa.appendChild(item);
+		map.appendChild(item);
 		
 
 
@@ -175,7 +175,7 @@ async function buildMap() {
 
 		mapItems.push(item);
   	}
-	mapa.ariaHidden = "false"
+	map.ariaHidden = "false"
 }
 
 async function handleItemClicks() {
