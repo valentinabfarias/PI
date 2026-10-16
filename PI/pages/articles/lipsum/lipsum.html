@@ -10,23 +10,23 @@
 <body data-type="article">
     <div id="header-element"></div>
     <div id="control-bar">
-        <div id="scroll-bar" role="progressbar">
-            <div id="scroll-progress"></div>
+        <div id="progress-bar" role="progressbar">
+            <div id="article-progress"></div>
         </div>
         <nav id="article-options">
             <div id="audio-controls">
-                <button id="rewind" onclick="rewind()">⏮</button>
-                <button id="play" onclick="play()">▶</button>
-                <button id="forward" onclick="forward()">⏭</button>
+                <div id="audio-buttons">
+                    <button id="rewind" onclick="rewind()">⏮</button>
+                    <button id="play" onclick="play()">▶</button>
+                    <button id="forward" onclick="forward()">⏭</button>
+                </div>
                 <div id="audio-bar" role="progressbar" aria-valuemin="1">
                     <div id="audio-progress"></div>
                 </div>
             </div>
+
             <span id="page-counter"></span>
             <span id="page-counter-hidden" style="display: none;"></span>
-            <div id="progress-bar" role="progressbar" aria-valuemin="1">
-                <div id="article-progress"></div>
-            </div>
         </nav>
     </div>
     <main>

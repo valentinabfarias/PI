@@ -1,7 +1,7 @@
 console.log(sessionStorage.getItem("mapIndex"))
 
 // barra de scroll
-if (document.getElementById("scroll-progress") !== null) {
+/*if (document.getElementById("scroll-progress") !== null) {
 	function updateScrollBar() {
 		let footer =
 			document.getElementById("footer") ||
@@ -19,13 +19,12 @@ if (document.getElementById("scroll-progress") !== null) {
 		document.getElementById("scroll-bar").ariaValueNow = progress;
 	}
 	updateScrollBar();
-}
+}*/
 
 // barra de leitura
 const articleProgress = document.getElementById("article-progress")
 const pageCounter = document.getElementById("page-counter")
 const pageCounterHidden = document.getElementById("page-counter-hidden")
-window.addEventListener("scroll", updateScrollBar);
 
 // construtor do artigo
 const title = document.querySelector("title").innerHTML;
@@ -48,6 +47,7 @@ let lastPage;
 
 sessionStorage.setItem("pageIndex", (articles[articleIndex].currentPage) - 1)
 let pageIndex = parseInt(sessionStorage.getItem("pageIndex"))
+let previousPageIndex = pageIndex
 let currentPage;
 
 for (let i = 0; i < numberPages+1; i++) {
@@ -83,10 +83,6 @@ async function updatePage() {
 	
 	articleProgress.style.width = `${((currentPage - 1) * 100 / (lastPage - 1))}%`
 
-	if (articleProgress.style.width == `0%`) {
-		articleProgress.style.width = `1%`
-	}
-
 	pageCounter.innerHTML = `Página ${currentPage}/${lastPage}`
 	pageCounterHidden.innerHTML = `Página ${currentPage} de ${lastPage}`
 
@@ -116,12 +112,22 @@ async function updatePage() {
 			document.getElementById("tags").appendChild(tag)
 		}
 	}
+	synth.cancel()
+	audioProgress.style.width = `${((synthIndex) /allElements1D.length - 1) * 100}%`
 }
 
 // botões
 
 function previousPage() {
+	previousPageIndex = pageIndex
 	pageIndex--;
+
+	isPlaying = false;
+	pagePlayedOnce = true;
+	playButton.textContent = "▶";
+    playButton.onclick = play;
+	synth.cancel();
+	synthIndex = 0
 
 	sessionStorage.setItem("pageIndex", pageIndex);
 	updatePage();
@@ -129,7 +135,15 @@ function previousPage() {
 }
 
 function nextPage() {
+	previousPageIndex = pageIndex
 	pageIndex++;
+
+	isPlaying = false;
+	pagePlayedOnce = false;
+	playButton.textContent = "▶";
+    playButton.onclick = play;
+	synth.cancel();
+	synthIndex = 0
 
 	sessionStorage.setItem("pageIndex", pageIndex);
 	updatePage();
@@ -191,12 +205,17 @@ function formProceed() {
 const synth = window.speechSynthesis;
 
 let allElements = []
+let allElements1D = []
 let currentPageElements = []
-let synthIndex = 0
+let synthIndex = 0;
+let synthProgress = 0;
+let synthIndexChange = 0;
 let audio;
-let isPlaying = false
+let isPlaying = false;
+let pagePlayedOnce = false;
 
 let playButton = document.getElementById("play")
+let audioProgress = document.getElementById("audio-progress")
 
 async function countSynthElements() {
     await updatePage();
@@ -215,15 +234,17 @@ async function countSynthElements() {
 
         allElements.push(elements);
     }
+	allElements1D = [].concat(...allElements)
 
-    await updateSynth();
+    await setUpSynth();
 
 	console.log("speechSynthesis" in window);
 	console.log(currentPageElements);
 	console.log(pages[pageIndex]);
 }
+countSynthElements();
 
-async function updateSynth() {
+async function setUpSynth() {
     await updatePage();
 
     currentPageElements = [
@@ -235,20 +256,48 @@ async function updateSynth() {
 }
 
 function getSpeechText(element) {
+	console.log(allElements1D)
+
     if (element instanceof Element && element.tagName === "img") {
         return element.alt || "";
     }
-    return element?.textContent?.trim() || "";
-}
+    return element?.textContent?.trim() || "";}
 
 function speakNext() {
     if (!isPlaying || synth.paused) return;
 
     while (synthIndex < currentPageElements.length) {
+		currentPageElements = [
+			pageCounterHidden,
+			...(allElements[pageIndex] ?? [])
+    	];
+
         const element = currentPageElements[synthIndex];
         const sentence = getSpeechText(element);
+		
+		console.log(currentPageElements[0].innerHTML)
+		console.log(sentence)
 
+		if (sentence === currentPageElements[0].innerHTML) {
+			if (pageIndex >= previousPageIndex) {
+				for (i = 0; i < pageIndex; i++) {
+					synthIndexChange = allElements[i].length + synthIndexChange
+				}
+				synthProgress = synthIndexChange - synthProgress
+			} else if (pageIndex < previousPageIndex) {
+				for (i = 0; i < pageIndex; i++) {
+					synthIndexChange = -(allElements[i].length + synthIndexChange)
+				}
+				synthProgress = synthProgress + synthIndexChange
+			}
+			console.log(`${synthProgress} ${synthIndexChange}`)
+		}
+		pagePlayedOnce = true;
+	
         synthIndex++;
+		synthProgress++;
+
+		audioProgress.style.width = `${(synthProgress / (allElements1D.length - 1)) * 100}%`
 
         if (!sentence) continue;
 
@@ -270,6 +319,7 @@ function speakNext() {
         };
 
         synth.speak(utterance);
+
         return;
     }
 
@@ -304,22 +354,29 @@ function pause() {
 }
 
 function rewind() {
-	if (synthIndex < 1) {
+	if (synthIndex <= 1 && synthProgress <= 1) {
 		return
 	} else {
+		isPlaying = true;
 		synth.cancel()
 		synthIndex = synthIndex - 2
+		synthProgress = synthProgress - 2
 		getSpeechText(currentPageElements[synthIndex])
 	}
+	console.log(synthIndex)
 }
 
 function forward() {
 	if (synthIndex > currentPageElements.length) {
 		return
 	} else {
+		isPlaying = true;
 		synth.cancel()
 		getSpeechText(currentPageElements[synthIndex])
 	}
+	console.log(synthIndex)
 }
 
-countSynthElements();
+function updateSynth() {
+	
+}
