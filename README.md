@@ -2,6 +2,6 @@ Projeto Integrador - Impactos da Paralisia Cerebral na Trajetória Acadêmica de
 
 Integrantes:
 - Maria Rita Bertoldi Borges 
-- Mia Cardoso Iglesias Vieira 
+- Mia Vieira Cardoso Iglesias Cabral
 - Sofia Torres Woltmann
 - Valentina de Borba Farias
