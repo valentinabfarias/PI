@@ -4,7 +4,6 @@
     "title": "Título de exemplo - Lorem ipsum 1",
     "desc": "Lorem ipsum dolor sit amet, consectetur adipiscing elit",
     "longDesc": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
-    "tags": ["dolor-sit", "amet", "consectetur"],
     "pages": 3,
     "questions": 5
 }

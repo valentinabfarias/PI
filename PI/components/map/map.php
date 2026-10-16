@@ -136,27 +136,6 @@ async function buildMap() {
 				}
 				itemDetails.appendChild(longDesc);
 
-
-				const tagBar = document.createElement("div");
-				tagBar.className = "tag-bar"
-				itemDetails.appendChild(tagBar)
-				
-
-					if (i < jsonFiles.length && Array.isArray(jsonFiles[i].tags)) {
-						for (let t = 0; t < jsonFiles[i].tags.length; t++) {
-							const tag = document.createElement("div");
-							tag.className = "tag";
-							tag.textContent = `#${jsonFiles[i].tags[t]}`;
-							tagBar.appendChild(tag);
-						}
-					} else {
-						const tag = document.createElement("div");
-						tag.className = "tag";
-						tag.textContent = "#";
-						tagBar.appendChild(tag);
-					}
-
-
 				const itemNav = document.createElement("nav");
 				itemNav.className = "item-nav"
 				itemDetails.appendChild(itemNav);

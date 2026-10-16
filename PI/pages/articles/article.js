@@ -102,16 +102,6 @@ async function updatePage() {
 	if (document.getElementById("article-title") !== null) {
 		document.getElementById("article-title").innerHTML = `${articles[articleIndex].title}`
 	}
-
-	if (document.getElementById("tags") !== null) {
-		for (let i=0; i < articles[articleIndex].tags.length; i++) {
-			const tag = document.createElement("div");
-			tag.classList.add("tag");
-			tag.innerHTML = `#${articles[articleIndex].tags[i]}`
-
-			document.getElementById("tags").appendChild(tag)
-		}
-	}
 	synth.cancel()
 	audioProgress.style.width = `${((synthIndex) /allElements1D.length - 1) * 100}%`
 }
@@ -288,6 +278,7 @@ function speakNext() {
 				for (i = 0; i < pageIndex; i++) {
 					synthIndexChange = -(allElements[i].length + synthIndexChange)
 				}
+				console.log(synthProgress+synthIndexChange)
 				synthProgress = synthProgress + synthIndexChange
 			}
 			console.log(`${synthProgress} ${synthIndexChange}`)
