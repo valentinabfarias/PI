@@ -72,7 +72,7 @@ async function buildMap() {
 	
 	for (let i = 0; i < articles.length; i++) {
 		
-		if(articles[i].currentPage = null) {
+		if(articles[i].currentPage == null) {
 			articles[i].currentPage = 1
 		}
 	}
@@ -90,7 +90,7 @@ async function buildMap() {
 		item.classList.add("item")
 		item.setAttribute("id", `item-map-${i}`);
 		item.setAttribute("role", "button")
-		item.ariaHidden = "true"
+		item.setAttribute("tabindex", "0")
 		if (i > mapIndex) {
 			item.classList.add("disabled")
 		}
@@ -178,44 +178,63 @@ async function buildMap() {
 	map.ariaHidden = "false"
 }
 
+function buttonFunction() {
+	if (this.classList.contains("selected")) {
+		this.classList.remove("selected");
+		this.querySelector(".item-details").style.display = "none";
+		this.querySelector(".item-desc").style.display = "flex";
+	} else {
+		mapItems.forEach(function(e) {
+		e.classList.remove("selected");
+		e.querySelector(".item-details").style.display = "none";
+		e.querySelector(".item-desc").style.display = "flex";
+	});
+
+		this.classList.add("selected");
+		this.querySelector(".item-details").style.display = "flex";
+		this.querySelector(".item-desc").style.display = "none";
+	}
+}
+
+function linkFunction() {
+	sessionStorage.setItem("articleIndex", this.dataset.val);
+	document.cookie=`article_index=${this.dataset.val}`
+
+	console.log(JSON.parse(sessionStorage.getItem("articles"))[this.dataset.val].currentPage);
+	sessionStorage.setItem("mapIndex", this.dataset.val)
+}
+
 async function handleItemClicks() {
-	await buildMap();
-	mapItems.forEach(function(e) {
-		if (!e.classList.contains("disabled")) {
-			e.addEventListener("click", function() {
-				if (e.classList.contains("selected")) {
-					e.classList.remove("selected");
-					e.querySelector(".item-details").style.display = "none";
-					e.querySelector(".item-desc").style.display = "flex";
-				} else {
-					mapItems.forEach(function(e) {
-						e.classList.remove("selected");
-						e.querySelector(".item-details").style.display = "none";
-						e.querySelector(".item-desc").style.display = "flex";
-					});
+    await buildMap();
 
-					e.classList.add("selected");
-					e.querySelector(".item-details").style.display = "flex";
-					e.querySelector.setAttribute("aria-live", "polite")
-					e.querySelector(".item-desc").style.display = "none";
-				};
-			});
-		} else {
-			return
-		}
-	});
+    mapItems.forEach(function(item) {
+        if (item.classList.contains("disabled")) return;
 
-	const linkButtons = document.querySelectorAll(".link-button")
-	console.log(linkButtons)
+        item.addEventListener("click", function(event) {
+            buttonFunction.call(item);
+        });
 
-	linkButtons.forEach(function(e) {
-		e.addEventListener("click", function() {
-			sessionStorage.setItem("articleIndex", e.dataset.val);
-			document.cookie=`article_index${e.dataset.val}`
+        item.addEventListener("keydown", function(event) {
+            if (event.key === "Enter" || event.key === "Space") {
+                event.preventDefault();
+                buttonFunction.call(item);
+            }
+        });
+    });
 
-			console.log(JSON.parse(sessionStorage.getItem("articles"))[e.dataset.val].currentPage);
-			sessionStorage.setItem("mapIndex", e.dataset.val)
-		})
-	});
+    document.querySelectorAll(".link-button").forEach(function(link) {
+        link.addEventListener("click", function(event) {
+            linkFunction.call(link);
+        });
+
+		link.addEventListener("keydown", function(event) {
+            if (event.key === "Enter" || event.key === "Space") {
+				event.stopPropagation();
+            	event.preventDefault();
+               	linkFunction.call(link);
+				window.location.href = link.href
+            }
+        });
+    });
 }
 handleItemClicks();
