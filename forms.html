@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cadastro</title>
+  <link rel="stylesheet" href="forms.css">
+</head>
+<body>
+  <div class="container">
+    <h1>Cadastro</h1>
+    
+    <form id="formulario">
+      <div class="form-group">
+        <label for="nome">Nome</label>
+        <input type="text" id="nome" placeholder="Digite seu nome" required>
+        <div class="error-message" id="erro-nome">Por favor, digite um nome válido.</div>
+      </div>
+
+      <div class="form-group">
+        <label for="email">E-mail</label>
+        <input type="email" id="email" placeholder="Digite seu e-mail" required>
+        <div class="error-message" id="erro-email">Por favor, digite um e-mail válido.</div>
+      </div>
+
+      <div class="form-group">
+        <label for="senha">Senha</label>
+        <input type="password" id="senha" placeholder="Digite sua senha" required>
+        <div class="error-message" id="erro-senha">A senha deve ter no mínimo 6 caracteres.</div>
+      </div>
+
+      <button type="submit">Enviar</button>
+    </form>
+
+    <div class="success-message" id="sucesso">
+      Cadastro realizado com sucesso!
+    </div>
+
+    <p style="text-align:center; margin-top:20px;">
+      <a href="lista.html" style="color:#34502B; font-weight:600;">Ver cadastros</a>
+    </p>
+  </div>
+
+  <script>
+    const form = document.getElementById('formulario');
+    const nomeInput = document.getElementById('nome');
+    const emailInput = document.getElementById('email');
+    const senhaInput = document.getElementById('senha');
+    const erroNome = document.getElementById('erro-nome');
+    const erroEmail = document.getElementById('erro-email');
+    const erroSenha = document.getElementById('erro-senha');
+    const sucesso = document.getElementById('sucesso');
+
+    form.addEventListener('submit', function(e) {
+      e.preventDefault();
+
+      // Limpa erros
+      nomeInput.classList.remove('error');
+      emailInput.classList.remove('error');
+      senhaInput.classList.remove('error');
+      erroNome.style.display = 'none';
+      erroEmail.style.display = 'none';
+      erroSenha.style.display = 'none';
+      sucesso.style.display = 'none';
+
+      const nome = nomeInput.value.trim();
+      const email = emailInput.value.trim();
+      const senha = senhaInput.value;
+      let valido = true;
+
+      if (nome.length < 2) {
+        nomeInput.classList.add('error');
+        erroNome.style.display = 'block';
+        valido = false;
+      }
+
+      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      if (!emailRegex.test(email)) {
+        emailInput.classList.add('error');
+        erroEmail.style.display = 'block';
+        valido = false;
+      }
+
+      if (senha.length < 6) {
+        senhaInput.classList.add('error');
+        erroSenha.style.display = 'block';
+        valido = false;
+      }
+
+      if (!valido) return;
+
+      // Pega os cadastros que já existem
+      let cadastros = JSON.parse(localStorage.getItem('cadastros')) || [];
+
+      // Verifica se o e-mail já existe
+      const emailExiste = cadastros.some(c => c.email === email);
+      if (emailExiste) {
+        alert('Este e-mail já está cadastrado!');
+        return;
+      }
+
+      // Adiciona o novo cadastro
+      cadastros.push({
+        id: Date.now(),
+        nome: nome,
+        email: email,
+        senha: senha,
+        data: new Date().toLocaleString('pt-BR')
+      });
+
+      // Salva no navegador
+      localStorage.setItem('cadastros', JSON.stringify(cadastros));
+
+      // Mostra sucesso
+      sucesso.style.display = 'block';
+      form.reset();
+    });
+  </script>
+</body>
+</html>
