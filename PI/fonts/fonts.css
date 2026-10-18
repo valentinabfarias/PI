@@ -1,31 +1,17 @@
-/**** Atkinson Hyperlegible ****/
+@import url("https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400;1,700&display=swap");
+
+/**** Atkinson Hyperlegible (CDN; arquivos locais opcionais) ****/
 
 @font-face {
     font-family: "Atkinson Hyperlegible";
-    src: url(AtkinsonHyperlegible/AtkinsonHyperlegible-Regular.ttf);
+    src: local("Atkinson Hyperlegible"), local("AtkinsonHyperlegible-Regular");
     font-weight: normal;
     font-style: normal;
 }
 
 @font-face {
     font-family: "Atkinson Hyperlegible";
-    src: url(AtkinsonHyperlegible/AtkinsonHyperlegible-Bold.ttf);
+    src: local("Atkinson Hyperlegible Bold"), local("AtkinsonHyperlegible-Bold");
     font-weight: bold;
     font-style: normal;
 }
-
-@font-face {
-    font-family: "Atkinson Hyperlegible";
-    src: url(AtkinsonHyperlegible/AtkinsonHyperlegible-Italic.ttf);
-    font-weight: normal;
-    font-style: italic;
-}
-
-@font-face {
-    font-family: "Atkinson Hyperlegible";
-    src: url(AtkinsonHyperlegible/AtkinsonHyperlegible-BoldItalic.ttf);
-    font-weight: bold;
-    font-style: italic;
-}
-
-/**** ****/

@@ -4,10 +4,14 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Título de exemplo - Lorem ipsum 1</title>
+    <title>Conteúdo movido</title>
+    <meta http-equiv="refresh" content="0; url=../../map.html">
+    <script>location.replace("../../map.html");</script>
+    <script src="../../../theme-init.js"></script>
     <link rel="stylesheet" href="../article.css" />
 </head>
 <body data-type="article">
+    <a class="skip-link" href="#article-main">Ir para o conteúdo</a>
     <div id="header-element"></div>
     <div id="control-bar">
         <div id="progress-bar" role="progressbar">
@@ -29,7 +33,7 @@
             <span id="page-counter-hidden" style="display: none;"></span>
         </nav>
     </div>
-    <main>
+    <main id="article-main">
         <article name="lipsum">
         </article>
     </main>
@@ -37,6 +41,8 @@
     <div id="form-popup-element"></div>
     <div id="footer-element"></div>
     <div id="mobile-footer-element"></div>
+    <script src="../../../js/journey-progress.js"></script>
+    <script src="../../../js/accessibility.js"></script>
     <script src="../../../script.js"></script>
     <script src="../article.js"></script>
 </body>

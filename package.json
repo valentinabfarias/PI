@@ -1,7 +1,18 @@
 {
+  "name": "pi-paralisia-cerebral",
+  "private": true,
+  "description": "Projeto Integrador — frontend estático (GitHub Pages) + API Node/MySQL",
+  "scripts": {
+    "install:all": "npm install",
+    "start": "node backend/server.js",
+    "dev": "node backend/server.js",
+    "serve": "npx --yes serve . -l 5500",
+    "dev:static": "npm run serve"
+  },
   "dependencies": {
     "cors": "^2.8.6",
     "express": "^5.2.1",
+    "multer": "^2.4.0",
     "mysql2": "^3.24.5"
   }
 }

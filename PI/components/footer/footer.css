@@ -6,11 +6,12 @@
     box-sizing: border-box;
     background-color: var(--destaque-1);
     color: var(--texto-destaque-1);
-    font-size: 14pt;
-    padding: 5ch 15vw;
+    font-size: 0.9375rem;
+    line-height: 1.5;
+    padding: 1.5rem clamp(1rem, 4vw, 2.5rem);
 
     @media (max-width: 480px) {
-        padding-bottom: calc(5vh - 16px);
+        padding-bottom: calc(4.5rem + 0.5rem);
     }
 
     hr {
@@ -25,27 +26,96 @@
 }
 
 #footer-nav {
-    max-width: 100%;
+    max-width: none;
+    margin: 0 auto;
     display: flex;
     justify-content: space-between;
+    align-items: flex-start;
     flex-direction: row;
+    flex-wrap: wrap;
+    gap: 1.5rem 2rem;
 
     @media (max-width: 480px) {
         flex-direction: column;
+        align-items: center;
     }
 }
 
+.footer-social-block {
+    align-items: flex-end;
+    text-align: right;
+
+    @media (max-width: 480px) {
+        align-items: center;
+        text-align: center;
+    }
+}
+
+.footer-social {
+    display: flex;
+    align-items: center;
+    gap: 0.85rem;
+    margin-bottom: 0.65rem;
+}
+
+.footer-social-link {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 2.5rem;
+    height: 2.5rem;
+    border-radius: 999px;
+    background: rgb(255 255 255 / 0.12);
+    color: inherit;
+    transition: background 0.2s ease, transform 0.15s ease;
+}
+
+.footer-social-link:hover {
+    background: rgb(255 255 255 / 0.22);
+    transform: translateY(-1px);
+}
+
+.footer-social-link:focus-visible {
+    outline: 2px solid #fff;
+    outline-offset: 2px;
+}
+
+.footer-social-icon {
+    width: 1.35rem;
+    height: 1.35rem;
+}
+
+.footer-copyright {
+    margin: 0;
+    font-size: 0.875rem;
+    opacity: 0.92;
+    max-width: 22rem;
+    line-height: 1.45;
+}
+
 .footer-content-items {
-    min-width: 10vw;
+    min-width: 0;
     display: flex;
     flex-direction: column;
+    gap: 0.5rem;
+
+    a {
+        color: inherit;
+        text-decoration: none;
+        font-weight: 600;
+    }
+
+    a:hover {
+        text-decoration: underline;
+        text-underline-offset: 3px;
+    }
 
     a:not(:last-child) {
-        padding-bottom: 16px;
+        padding-bottom: 0;
     }
 
     @media (max-width: 480px) {
-        padding-bottom: 24px;
         text-align: center;
+        align-items: center;
     }
 }

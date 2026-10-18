@@ -1,17 +1,200 @@
 @import url(../../style.css);
 
 header {
-    z-index: 1;
+    z-index: 10;
     width: 100%;
     box-sizing: border-box;
-    padding: 5vmin;
-    background-color: var(--destaque-sec-1);
+    padding: 0.45rem clamp(0.85rem, 3vw, 1.75rem);
+    min-height: 3.35rem;
+    background-color: var(--nav-bg);
+    color: var(--nav-text);
+    border-bottom: 1px solid var(--nav-border);
+    box-shadow: 0 1px 0 rgb(0 0 0 / 0.06);
+}
+
+#header-css {
+    position: relative;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.5rem 1rem;
+    width: 100%;
+    max-width: none;
+    margin: 0;
+}
+
+#logo-div {
+    display: flex;
+    align-items: center;
+    gap: 0.65rem;
+    color: var(--nav-text);
+    min-width: 0;
+    z-index: 2;
+}
+
+#logo-div .logo-title {
+    font-size: clamp(0.95rem, 2.2vw, 1.125rem);
+    font-weight: 700;
+    line-height: 1.2;
+    letter-spacing: -0.02em;
+    margin: 0;
+}
+
+#logo-div img {
+    height: 2.75rem;
+    width: auto;
+    max-width: 3.25rem;
+    object-fit: contain;
+    flex-shrink: 0;
+}
+
+#logo-div a {
+    display: flex;
+    align-items: center;
+    border-radius: 6px;
+}
+
+#logo-div a:focus-visible {
+    outline: 2px solid var(--nav-text);
+    outline-offset: 3px;
+}
+
+#header-actions {
+    display: flex;
+    align-items: center;
+    flex-wrap: nowrap;
+    justify-content: flex-end;
+    gap: 0.4rem 0.5rem;
+    margin-left: auto;
+    z-index: 2;
+}
+
+#header-nav {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 0.25rem clamp(1.35rem, 4vw, 2.75rem);
+    z-index: 1;
+    pointer-events: none;
+}
+
+#header-nav a {
+    pointer-events: auto;
+    color: var(--nav-text);
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 1.05rem;
+    padding: 0.25rem 0.1rem;
+    white-space: nowrap;
+    border-radius: 4px;
+    letter-spacing: 0.01em;
+}
+
+#header-nav a:hover {
+    text-decoration: underline;
+    text-underline-offset: 3px;
+}
+
+#header-nav a:focus-visible {
+    outline: 2px solid var(--nav-text);
+    outline-offset: 2px;
+}
+
+.theme-toggle,
+.menu-open-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 2.5rem;
+    height: 2.5rem;
+    padding: 0;
+    border: 1px solid var(--nav-toggle-border);
+    border-radius: 999px;
+    background: var(--nav-toggle-bg);
+    color: var(--nav-text);
+    flex-shrink: 0;
+    transition: background 0.2s ease, transform 0.15s ease;
+}
+
+.theme-toggle:hover,
+.menu-open-btn:hover {
+    background: var(--nav-toggle-bg-hover);
+}
+
+.theme-toggle:active,
+.menu-open-btn:active {
+    transform: scale(0.96);
+}
+
+.theme-toggle:focus-visible,
+.menu-open-btn:focus-visible {
+    outline: 2px solid var(--nav-text);
+    outline-offset: 2px;
+}
+
+.theme-icon {
+    width: 1.25rem;
+    height: 1.25rem;
+}
+
+.theme-icon-moon {
+    display: none;
+}
+
+html[data-theme="escuro"] #theme-toggle .theme-icon-sun,
+html[data-theme="alto-contraste"] #theme-toggle .theme-icon-sun {
+    display: none;
+}
+
+html[data-theme="escuro"] #theme-toggle .theme-icon-moon,
+html[data-theme="alto-contraste"] #theme-toggle .theme-icon-moon {
+    display: block;
 }
 
 @media screen and (max-width: 768px) {
     header {
         position: sticky;
         top: 0;
-        height: 3vmin;
+        min-height: auto;
+        padding-top: 0.4rem;
+        padding-bottom: 0.4rem;
+    }
+
+    #header-css {
+        flex-wrap: wrap;
+        justify-content: center;
+        padding-bottom: 0.15rem;
+    }
+
+    #logo-div {
+        flex: 1 1 auto;
+        min-width: 0;
+    }
+
+    #header-nav {
+        position: static;
+        transform: none;
+        order: 3;
+        flex: 1 1 100%;
+        gap: 0.35rem clamp(1rem, 5vw, 1.75rem);
+        padding: 0.15rem 0 0.25rem;
+    }
+
+    #header-actions {
+        margin-left: 0;
+    }
+
+    #header-nav a {
+        font-size: 1rem;
+    }
+
+    #logo-div .logo-title {
+        font-size: 0.9rem;
     }
 }

@@ -1,9 +1,95 @@
 <header>
     <span id="header-css">
         <div id="logo-div">
-            <img src=""></img>
-            <p>Testando</p>
+            <a data-app-href="pages/map.html" href="#">
+                <img src="" alt="" width="52" height="52">
+            </a>
+            <p class="logo-title">Jornada Inclusiva</p>
         </div>
-        <div></div>
+        <nav id="header-nav" aria-label="Atalhos principais">
+            <a data-app-href="pages/map.html" href="#">Início</a>
+            <a data-app-href="../forms.html" href="#">Cadastro</a>
+            <a data-app-href="pages/sobre.html" href="#">Sobre</a>
+        </nav>
+        <div id="header-actions">
+            <button
+                type="button"
+                id="theme-toggle"
+                class="theme-toggle"
+                aria-label="Alternar entre modo claro e escuro"
+                aria-pressed="false"
+                title="Alternar tema"
+            >
+                <svg class="theme-icon theme-icon-sun" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                    <circle cx="12" cy="12" r="4" fill="currentColor"/>
+                    <g stroke="currentColor" stroke-width="2" stroke-linecap="round">
+                        <path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/>
+                    </g>
+                </svg>
+                <svg class="theme-icon theme-icon-moon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                    <path fill="currentColor" d="M21 14.5A8.5 8.5 0 0 1 9.5 3 7 7 0 1 0 21 14.5z"/>
+                </svg>
+            </button>
+            <button
+                type="button"
+                id="menu-open"
+                class="menu-open-btn"
+                aria-controls="access-menu"
+                aria-expanded="false"
+                aria-haspopup="dialog"
+                aria-label="Abrir menu de contexto"
+            >
+                <span class="menu-open-icon" aria-hidden="true">
+                    <span></span><span></span><span></span>
+                </span>
+            </button>
+        </div>
     </span>
-</header> 
+</header>
+
+<div id="menu-overlay" hidden></div>
+
+<aside
+    id="access-menu"
+    role="dialog"
+    aria-modal="true"
+    aria-labelledby="access-menu-title"
+    hidden
+>
+    <div class="access-menu-header">
+        <h2 id="access-menu-title">Contexto</h2>
+        <button type="button" id="menu-close" aria-label="Fechar menu de contexto">×</button>
+    </div>
+
+    <section class="access-menu-section" aria-labelledby="menu-nav-title">
+        <h3 id="menu-nav-title">Navegação</h3>
+        <nav class="access-menu-nav" aria-label="Páginas do site">
+            <a data-app-href="pages/map.html" href="#">Mapa da jornada</a>
+            <a data-app-href="../forms.html" href="#">Cadastro</a>
+            <a data-app-href="pages/sobre.html" href="#">Sobre</a>
+            <a data-app-href="pages/admin.html" href="#">Área do administrador</a>
+            <a data-app-href="pages/preferences.html" href="#">Preferências e configurações</a>
+        </nav>
+    </section>
+
+    <section class="access-menu-section" aria-labelledby="menu-theme-title">
+        <h3 id="menu-theme-title">Tema da tela</h3>
+        <div class="theme-icon-group" role="group" aria-label="Modo claro ou escuro">
+            <button type="button" class="theme-icon-btn" data-theme-pick="claro" aria-label="Modo claro" title="Modo claro">
+                <svg class="theme-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                    <circle cx="12" cy="12" r="4" fill="currentColor"/>
+                    <g stroke="currentColor" stroke-width="2" stroke-linecap="round">
+                        <path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/>
+                    </g>
+                </svg>
+            </button>
+            <button type="button" class="theme-icon-btn" data-theme-pick="escuro" aria-label="Modo escuro" title="Modo escuro">
+                <svg class="theme-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                    <path fill="currentColor" d="M21 14.5A8.5 8.5 0 0 1 9.5 3 7 7 0 1 0 21 14.5z"/>
+                </svg>
+            </button>
+        </div>
+    </section>
+</aside>
+
+<div id="a11y-announcer" role="status" aria-live="polite" aria-atomic="true"></div>

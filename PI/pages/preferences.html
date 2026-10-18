@@ -3,47 +3,60 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Preferências</title>
+    <script src="../theme-init.js"></script>
     <link rel="stylesheet" href="../style.css">
 </head>
 <body>
+    <a class="skip-link" href="#conteudo-principal">Ir para o conteúdo principal</a>
     <div id="header-element"></div>
-        <main>
-            <div id="padding">
-                <div id="title">
-                    <h1>Preferências</h1>
-                </div>
-                <div class="option">
-                    <h2 class="subtitle">Tema do site</h2>
-                    <div class="preference-radios-align">
-                        <div class="preference-radios-content" id="light-content">
-                            <div class="radio-button-input" id="light-input">
-                                <input type="radio" name="tema" value="claro">
-                                <label>Claro&nbsp;☀️</label>
-                            </div>
-                        </div>
-                        <div class="preference-radios-content" id="dark-content">
-                            <div class="radio-button-input" id="dark-input">
-                                <input type="radio" name="tema" value="escuro">
-                                <label>Escuro&nbsp;🌙</label>
-                            </div>
-                        </div>
-                        <div class="preference-radios-content" id="hc-content">
-                            <div class="radio-button-input" id="hc-input">
-                                <input type="radio" name="tema" value="alto-contraste">
-                                <label>Alto contraste&nbsp;✨</label>
-                            </div>
-                        </div>
-
-
-                    </div>
+    <main id="conteudo-principal">
+        <div id="padding">
+            <div id="title">
+                <h1>Preferências</h1>
+            </div>
+            <p class="preferences-lead">
+                O tema claro ou escuro pode ser alterado pelo sol ou pela lua na barra superior. O tamanho do texto fica apenas aqui.
+                Tudo é salvo no seu navegador.
+            </p>
+            <div class="option">
+                <h2 class="subtitle">Tema do site</h2>
+                <div class="preference-radios-align">
+                    <label class="preference-radios-content" id="light-content" for="tema-claro">
+                        <span class="radio-button-input" id="light-input">
+                            <input type="radio" name="tema" id="tema-claro" value="claro">
+                            <span>Claro</span>
+                        </span>
+                    </label>
+                    <label class="preference-radios-content" id="dark-content" for="tema-escuro">
+                        <span class="radio-button-input" id="dark-input">
+                            <input type="radio" name="tema" id="tema-escuro" value="escuro">
+                            <span>Escuro</span>
+                        </span>
+                    </label>
+                    <label class="preference-radios-content" id="hc-content" for="tema-hc">
+                        <span class="radio-button-input" id="hc-input">
+                            <input type="radio" name="tema" id="tema-hc" value="alto-contraste">
+                            <span>Alto contraste</span>
+                        </span>
+                    </label>
                 </div>
             </div>
-        </main>
+            <div class="option" style="margin-top: 1rem;">
+                <h2 class="subtitle">Tamanho do texto</h2>
+                <div class="preference-radios-align" id="pref-font-group" role="group" aria-label="Tamanho do texto">
+                    <button type="button" class="preference-radios-content pref-font-btn" data-font-scale="100" aria-pressed="false">Padrão</button>
+                    <button type="button" class="preference-radios-content pref-font-btn" data-font-scale="112" aria-pressed="false">Médio</button>
+                    <button type="button" class="preference-radios-content pref-font-btn" data-font-scale="125" aria-pressed="false">Grande</button>
+                    <button type="button" class="preference-radios-content pref-font-btn" data-font-scale="150" aria-pressed="false">Muito grande</button>
+                </div>
+            </div>
+        </div>
+    </main>
 
     <div id="footer-element"></div>
-    
     <div id="mobile-footer-element"></div>
+    <script src="../js/accessibility.js"></script>
     <script src="../script.js"></script>
 </body>
 </html>

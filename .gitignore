@@ -1,0 +1,26 @@
+# Dependências (recriar com: npm install)
+node_modules/
+
+# Variáveis de ambiente e segredos
+.env
+.env.*
+!.env.example
+
+# Logs e cache
+*.log
+npm-debug.log*
+.npm
+
+# Sistema operacional / editor
+.DS_Store
+Thumbs.db
+desktop.ini
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# Build / artefatos locais (se surgirem)
+dist/
+build/
+.cache/

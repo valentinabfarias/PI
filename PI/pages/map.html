@@ -3,30 +3,60 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Mapa da jornada</title>
+    <script src="../theme-init.js"></script>
     <link rel="stylesheet" href="../style.css">
     <link rel="stylesheet" href="../components/map/map.css">
 </head>
 <body>
+    <a class="skip-link" href="#conteudo-principal">Ir para o conteúdo principal</a>
     <div id="header-element"></div>
-    <main>
+    <main id="conteudo-principal">
         <div id="hero-welcome">
             <div id="hero-welcome-gradient">
                 <div id="hero-welcome-formatting">
-                    <div id="hero-welcome-text">Boas vindas, ${usuário}!</div>
+                    <div id="hero-welcome-text">Boas-vindas!</div>
                 </div>
             </div>
         </div>
 
         <div id="padding">
-            <nav id="map" aria-hidden="=true"></nav>
+            <div class="journey-intro">
+                <h2>Sua jornada no ensino superior</h2>
+                <p>
+                    A cobrinha marca onde você está e rasteja ao mudar de etapa. Use « Voltar uma etapa » para retroceder.
+                    Cada fase traz o PDF publicado pela equipe.
+                    Use o ícone de menu no topo para navegação e preferências; o sol ou a lua alteram o tema claro ou escuro.
+                </p>
+            </div>
+            <div class="journey-snake-controls" id="journey-snake-controls">
+                <button
+                    type="button"
+                    id="snake-back"
+                    class="journey-snake-ctrl-btn"
+                    aria-label="Retroceder a cobrinha uma etapa"
+                    disabled
+                >
+                    ← Voltar uma etapa
+                </button>
+                <p class="journey-snake-hint" id="journey-snake-hint">
+                    Etapa atual: <strong id="journey-stage-label">1</strong>
+                </p>
+            </div>
+            <div id="journey-map-wrap">
+                <svg id="journey-trail" class="journey-trail" aria-hidden="true" focusable="false"></svg>
+                <div id="journey-snake" aria-hidden="true" hidden></div>
+                <ol id="map" aria-label="Etapas da jornada"></ol>
+                <div id="journey-announcer" role="status" aria-live="polite" aria-atomic="true"></div>
+            </div>
         </div>
     </main>
 
     <div id="footer-element"></div>
-
     <div id="mobile-footer-element"></div>
+    <script src="../js/journey-progress.js"></script>
+    <script src="../js/accessibility.js"></script>
     <script src="../script.js"></script>
-    <script src="../components/map/map.php"></script>
+    <script src="../components/map/map.js"></script>
 </body>
 </html>

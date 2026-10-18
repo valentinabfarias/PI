@@ -3,12 +3,14 @@
 #mobile-footer {
 	background-color: var(--destaque-1);
 	width: 100%;
-	height: 12vh;
+	height: 4rem;
+	min-height: 4rem;
 	position: sticky;
-	z-index: 2;
+	z-index: 9;
 	bottom: 0;
 	box-sizing: border-box;
 	display: none;
+	border-top: 1px solid rgb(255 255 255 / 0.12);
 }
 
 @media (max-width: 480px) {
@@ -24,6 +26,7 @@
 	justify-content: space-evenly;
 	align-items: center;
 	box-sizing: border-box;
+	margin: 0;
 }
 
 #mobile-footer tbody {
@@ -42,13 +45,22 @@
 	justify-content: center;
 }
 
-#mobile-footer td:hover {
-	cursor: pointer;
+#mobile-footer a {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	padding: 0.35rem;
+	border-radius: 8px;
+}
+
+#mobile-footer a:focus-visible {
+	outline: 2px solid var(--texto-destaque-1);
+	outline-offset: 2px;
 }
 
 .mobile-footer-icon {
 	margin: auto;
-	height: 8vh;
-	width: 8vh;
-	cursor: pointer;
+	height: 1.75rem;
+	width: 1.75rem;
+	object-fit: contain;
 }

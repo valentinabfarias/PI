@@ -1,0 +1,58 @@
+{
+  "version": 1,
+  "stages": [
+    {
+      "id": "etapa-1",
+      "index": 0,
+      "title": "Boas-vindas ao percurso",
+      "desc": "Conheça como usar este mapa e os materiais de apoio.",
+      "longDesc": "Esta etapa apresenta o caminho da cobrinha: cada fase desbloqueia um PDF pensado para apoiar estudantes com paralisia cerebral no ensino superior.",
+      "articleName": null,
+      "pdfPath": null
+    },
+    {
+      "id": "etapa-2",
+      "index": 1,
+      "title": "Direitos e permanência",
+      "desc": "Legislação, LBI e garantias na educação superior.",
+      "longDesc": "Material sobre direitos, adaptações curriculares e canais de denúncia e apoio institucional.",
+      "articleName": null,
+      "pdfPath": null
+    },
+    {
+      "id": "etapa-3",
+      "index": 2,
+      "title": "Acessibilidade na universidade",
+      "desc": "Barreiras comuns e estratégias de participação.",
+      "longDesc": "Orientações sobre acessibilidade arquitetônica, comunicacional e tecnológica no campus.",
+      "articleName": null,
+      "pdfPath": null
+    },
+    {
+      "id": "etapa-4",
+      "index": 3,
+      "title": "Apoio pedagógico",
+      "desc": "Materiais definidos pela equipe para o dia a dia das aulas.",
+      "longDesc": "PDF e orientações publicados pelo administrador para apoiar estudos, adaptações e comunicação com professores.",
+      "pdfPath": null
+    },
+    {
+      "id": "etapa-5",
+      "index": 4,
+      "title": "Planejamento acadêmico",
+      "desc": "Metas, adaptações e articulação com a coordenação.",
+      "longDesc": "PDF de apoio para organizar estudos, prazos e pedidos de adaptação junto à instituição.",
+      "articleName": null,
+      "pdfPath": null
+    },
+    {
+      "id": "etapa-6",
+      "index": 5,
+      "title": "Rede de apoio",
+      "desc": "Família, NAPNE, serviço social e comunidade.",
+      "longDesc": "Material para fortalecer vínculos de apoio durante a trajetória universitária.",
+      "articleName": null,
+      "pdfPath": null
+    }
+  ]
+}

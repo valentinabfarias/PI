@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Administração — PDFs por etapa</title>
+    <script src="../theme-init.js"></script>
+    <link rel="stylesheet" href="../style.css">
+    <style>
+        .admin-wrap {
+            max-width: 52rem;
+            margin: 0 auto;
+        }
+        .admin-card {
+            background: var(--fundo);
+            border-radius: 12px;
+            padding: 1.25rem;
+            margin-bottom: 1rem;
+            border: 1px solid rgb(52 80 43 / 0.12);
+        }
+        .admin-card h2 {
+            font-size: 1.1rem;
+            margin-bottom: 0.35rem;
+        }
+        .admin-card p {
+            margin-bottom: 0.75rem;
+            font-size: 0.95rem;
+        }
+        .admin-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.75rem;
+            align-items: center;
+        }
+        .admin-row input[type="file"] {
+            max-width: 100%;
+        }
+        .admin-btn {
+            min-height: 2.75rem;
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            border: 2px solid var(--destaque-1);
+            background: var(--destaque-1);
+            color: #fff;
+            font-weight: 700;
+            cursor: pointer;
+        }
+        .admin-status {
+            margin-top: 1rem;
+            padding: 0.75rem;
+            border-radius: 8px;
+            background: var(--main);
+        }
+        #admin-login {
+            margin-bottom: 1.5rem;
+        }
+        #admin-login label {
+            display: block;
+            font-weight: 700;
+            margin-bottom: 0.35rem;
+        }
+        #admin-key {
+            width: 100%;
+            max-width: 20rem;
+            min-height: 2.75rem;
+            padding: 0.5rem 0.75rem;
+            font-size: 1rem;
+        }
+    </style>
+</head>
+<body>
+    <a class="skip-link" href="#conteudo-principal">Ir para o conteúdo principal</a>
+    <div id="header-element"></div>
+    <main id="conteudo-principal">
+        <div id="padding" class="admin-wrap">
+            <div id="title">
+                <h1>Área do administrador</h1>
+            </div>
+            <p class="preferences-lead">
+                Envie um PDF de apoio para cada etapa do mapa. Requer o servidor local (<code>npm start</code>).
+                No GitHub Pages, os PDFs precisam estar em <code>PI/uploads/pdfs/</code> e o arquivo
+                <code>PI/data/journey.json</code> atualizado manualmente ou via deploy.
+            </p>
+
+            <div id="admin-login" class="option">
+                <label for="admin-key">Chave de administrador</label>
+                <input type="password" id="admin-key" autocomplete="off" placeholder="Padrão em desenvolvimento: pi-admin-dev">
+                <p style="margin-top:0.5rem;font-size:0.9rem;">Defina <code>ADMIN_KEY</code> no ambiente em produção.</p>
+            </div>
+
+            <div id="admin-stages" aria-live="polite"></div>
+            <p id="admin-message" class="admin-status" role="status"></p>
+        </div>
+    </main>
+    <div id="footer-element"></div>
+    <script src="../js/accessibility.js"></script>
+    <script src="../script.js"></script>
+    <script src="../js/admin.js"></script>
+</body>
+</html>

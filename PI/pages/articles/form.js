@@ -138,13 +138,20 @@ function nextQuestion() {
 }
 
 function endForm() {
-    // alert(`${rightAnswers}/${lastQuestion} acertos!!! (teste)`)
     articles[articleIndex].currentPage = 1;
     articles[articleIndex].currentQuestion = 1;
-
     sessionStorage.setItem("articles", JSON.stringify(articles));
-    
-    const mapIndex = sessionStorage.getItem("mapIndex")
-    sessionStorage.setItem("mapIndex", (parseInt(mapIndex) + 1))
-    alert(sessionStorage.getItem("mapIndex"))
+
+    const stageIdx = parseInt(
+        sessionStorage.getItem("journey-stage-index") || articleIndex,
+        10,
+    );
+    if (window.PIJourney) {
+        window.PIJourney.completeStage(stageIdx);
+    } else {
+        const mapIndex = parseInt(sessionStorage.getItem("mapIndex") || "0", 10);
+        sessionStorage.setItem("mapIndex", String(mapIndex + 1));
+    }
+
+    window.location.href = "../../../pages/map.html";
 }
