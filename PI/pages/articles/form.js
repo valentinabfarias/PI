@@ -344,6 +344,52 @@ function play() {
     playButton.onclick = pause;
 
     speakNext();
+    console.log("1. play() iniciou");
+
+    try {
+        console.log("2. synth:", synth);
+        console.log("3. audioEnabled:", audioEnabled);
+        console.log("4. isPlaying:", isPlaying);
+        console.log("5. speechGeneration:", speechGeneration);
+        console.log("6. synth.paused:", synth.paused);
+        console.log("7. synth.speaking:", synth.speaking);
+
+        audioEnabled = true;
+        console.log("8. audioEnabled atualizado");
+
+        if (synth.paused && synth.speaking) {
+            isPlaying = true;
+            synth.resume();
+            console.log("9. Retomando áudio pausado");
+            return;
+        }
+
+        if (isPlaying) {
+            console.log("9. Já está reproduzindo");
+            return;
+        }
+
+        speechMode = "question";
+        synthIndex = 0;
+
+        speechGeneration++;
+        console.log("10. Preparando leitura");
+
+        synth.cancel();
+        console.log("11. synth.cancel() executado");
+
+        isPlaying = true;
+
+        console.log("12. Elementos:", getCurrentElements());
+        console.log("13. Chamando speakNext()");
+
+        speakNext();
+
+        console.log("14. speakNext() retornou");
+
+    } catch (error) {
+        console.error("ERRO dentro de play():", error);
+    }
 }
 
 function pause() {

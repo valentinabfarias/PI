@@ -74,5 +74,7 @@ if (form) {
         form.reset();
         btnEnviar.disabled = false;
         sucesso.focus();
+
+        window.location.href = "./PI/pages/map.html"
     });
 }
