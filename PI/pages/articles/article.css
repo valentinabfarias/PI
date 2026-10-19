@@ -24,9 +24,9 @@
 		}
 	}
 
-	#article-options, #form-options {
+	#article-options {
 		display: flex;
-		gap: 40px;
+		gap: 5vw;
 		flex-direction: row;
 		justify-content: center;
 		align-items: center;
@@ -44,7 +44,7 @@
 		height: 0.8vh;
 		display: flex;
 		flex-direction: row;
-		background-color: #222;
+		background-color: #000000;
 
 		#article-progress {
 			width: 0;
@@ -57,7 +57,7 @@
 		display: flex;
 		flex-direction: row;
 		align-items: center;
-		gap: 20px;
+		gap: 1vw;
 		background-color: #374d94;
 		border-radius: 15px;
 		height: 100%;
@@ -68,7 +68,7 @@
 		display: flex;
 		flex-direction: row;
 		align-items: center;
-		gap: 5px;
+		gap: 1vw;
 
 		button {
 			display: flex;
@@ -94,24 +94,13 @@
 			transition: 0.3s;
 		}
 	}
-
-	#form-progress-bar {
-		width: 30vw;
-		height: 1.5vh;
-		background-color: #000;
-		border-radius: 100vh;
-
-		#form-progress {
-			width: 0;
-			height: 100%;
-			background-color: #1fc0ff;
-			border-radius: 100vh;
-			transition: 0.3s;
-		}
-	}
 }
 
-#title-area {
+.hidden {
+	display: none;
+}
+
+.title-area {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -148,7 +137,7 @@
 	}
 }
 
-#title-area hr, #separate-from-buttons {
+.title-area hr, #separate-from-buttons {
 	margin-top: 15px;
 	margin-bottom: 30px;
 	width: 100%;

@@ -1,30 +1,9 @@
 console.log(sessionStorage.getItem("mapIndex"))
 
-// barra de scroll
-/*if (document.getElementById("scroll-progress") !== null) {
-	function updateScrollBar() {
-		let footer =
-			document.getElementById("footer") ||
-			document.getElementById("footer-element");
-		let footerHeight = footer.offsetHeight;
-
-		const progressBar = document.getElementById("scroll-progress") || document.getElementById("control-bar-element");
-		const height = document.body.scrollHeight - window.innerHeight;
-		let progress = (window.pageYOffset / (height - footerHeight)) * 100;
-
-		if (progress > 100) {
-			progress = 100;
-		}
-		progressBar.style.width = progress + "%";
-		document.getElementById("scroll-bar").ariaValueNow = progress;
-	}
-	updateScrollBar();
-}*/
-
 // barra de leitura
 const articleProgress = document.getElementById("article-progress")
 const pageCounter = document.getElementById("page-counter")
-const pageCounterHidden = document.getElementById("page-counter-hidden")
+const hidden = document.querySelector(".hidden")
 
 // construtor do artigo
 const title = document.querySelector("title").innerHTML;
@@ -50,8 +29,8 @@ let pageIndex = parseInt(sessionStorage.getItem("pageIndex"))
 let previousPageIndex = pageIndex
 let currentPage;
 
-for (let i = 0; i < numberPages+1; i++) {
-	pages[i] = `./pages/articles/${articleName}/content/page-${i+1}.html`;
+for (let i = 0; i < numberPages + 1; i++) {
+	pages[i] = `./pages/articles/${articleName}/content/page-${i + 1}.html`;
 	lastPage = pages.length - 1
 	document.getElementById("progress-bar").ariaValueMax = lastPage;
 }
@@ -80,11 +59,11 @@ async function updatePage() {
 	const resp = await fetch(articleUrl);
 	const Html = await resp.text();
 	article.innerHTML = Html;*/
-	
+
 	articleProgress.style.width = `${((currentPage - 1) * 100 / (lastPage - 1))}%`
 
 	pageCounter.innerHTML = `Página ${currentPage}/${lastPage}`
-	pageCounterHidden.innerHTML = `Página ${currentPage} de ${lastPage}`
+	hidden.innerHTML = `Página ${currentPage} de ${lastPage}`
 
 	/***************************/
 
@@ -103,7 +82,7 @@ async function updatePage() {
 		document.getElementById("article-title").innerHTML = `${articles[articleIndex].title}`
 	}
 	synth.cancel()
-	audioProgress.style.width = `${((synthIndex) /allElements1D.length - 1) * 100}%`
+	audioProgress.style.width = `${((synthIndex) / allElements1D.length - 1) * 100}%`
 }
 
 // botões
@@ -115,7 +94,7 @@ function previousPage() {
 	isPlaying = false;
 	pagePlayedOnce = true;
 	playButton.textContent = "▶";
-    playButton.onclick = play;
+	playButton.onclick = play;
 	synth.cancel();
 	synthIndex = 0
 
@@ -129,9 +108,8 @@ function nextPage() {
 	pageIndex++;
 
 	isPlaying = false;
-	pagePlayedOnce = false;
 	playButton.textContent = "▶";
-    playButton.onclick = play;
+	playButton.onclick = play;
 	synth.cancel();
 	synthIndex = 0
 
@@ -141,9 +119,9 @@ function nextPage() {
 }
 
 document.addEventListener('keydown', (e) => {
-    if (e.key === "ArrowLeft") {
-        previousPage()
-    } else if (e.key === "ArrowRight") {
+	if (e.key === "ArrowLeft") {
+		previousPage()
+	} else if (e.key === "ArrowRight") {
 		nextPage()
 	}
 });
@@ -186,7 +164,7 @@ function formProceed() {
 	if (articles[articleIndex].currentQuestion == null) {
 		articles[articleIndex].currentQuestion = 1
 	}
-		sessionStorage.setItem("articles", JSON.stringify(articles));
+	sessionStorage.setItem("articles", JSON.stringify(articles));
 	window.location.href = "./form.html"
 }
 
@@ -202,146 +180,154 @@ let synthProgress = 0;
 let synthIndexChange = 0;
 let audio;
 let isPlaying = false;
-let pagePlayedOnce = false;
+
+let utterance;
 
 let playButton = document.getElementById("play")
 let audioProgress = document.getElementById("audio-progress")
 
 async function countSynthElements() {
-    await updatePage();
+	await updatePage();
 
-    allElements = [];
+	allElements = [];
 
-    for (let i = 0; i < lastPage; i++) {
-        const articleUrl = new URL(pages[i], scriptUrl);
-        const resp = await fetch(articleUrl);
-        const html = await resp.text();
-        const doc = new DOMParser().parseFromString(html, "text/html");
+	for (let i = 0; i < lastPage; i++) {
+		const articleUrl = new URL(pages[i], scriptUrl);
+		const resp = await fetch(articleUrl);
+		const html = await resp.text();
+		const doc = new DOMParser().parseFromString(html, "text/html");
 
-        const elements = Array.from(
-            doc.querySelectorAll("h1, p, h2, img")
-        );
+		const elements = Array.from(doc.querySelectorAll("h1, p, h2, img"));
 
-        allElements.push(elements);
-    }
+		allElements.push(elements);
+	}
 	allElements1D = [].concat(...allElements)
-
-    await setUpSynth();
-
-	console.log("speechSynthesis" in window);
-	console.log(currentPageElements);
-	console.log(pages[pageIndex]);
 }
 countSynthElements();
 
 async function setUpSynth() {
-    await updatePage();
+	await updatePage();
 
-    currentPageElements = [
-        pageCounterHidden,
-        ...(allElements[pageIndex] ?? [])
-    ];
+	currentPageElements = [hidden, ...(allElements[pageIndex] ?? [])];
 
-    synthIndex = 0;
+	synthIndex = 0;
 }
 
 function getSpeechText(element) {
-	console.log(allElements1D)
-
-    if (element instanceof Element && element.tagName === "img") {
-        return element.alt || "";
-    }
-    return element?.textContent?.trim() || "";}
+	if (element instanceof Element && element.tagName === "img") {
+		return element.alt || "";
+	}
+	return element?.textContent?.trim() || "";
+}
 
 function speakNext() {
-    if (!isPlaying || synth.paused) return;
+	if (!isPlaying || synth.paused) return;
 
-    while (synthIndex < currentPageElements.length) {
+	while (synthIndex < currentPageElements.length) {
 		currentPageElements = [
-			pageCounterHidden,
+			hidden,
 			...(allElements[pageIndex] ?? [])
-    	];
+		];
 
-        const element = currentPageElements[synthIndex];
-        const sentence = getSpeechText(element);
-		
-		console.log(currentPageElements[0].innerHTML)
-		console.log(sentence)
+		const element = currentPageElements[synthIndex];
+		const sentence = getSpeechText(element);
 
 		if (sentence === currentPageElements[0].innerHTML) {
-			if (pageIndex >= previousPageIndex) {
-				for (i = 0; i < pageIndex; i++) {
-					synthIndexChange = allElements[i].length + synthIndexChange
-				}
-				synthProgress = synthIndexChange - synthProgress
-			} else if (pageIndex < previousPageIndex) {
-				for (i = 0; i < pageIndex; i++) {
-					synthIndexChange = -(allElements[i].length + synthIndexChange)
-				}
-				console.log(synthProgress+synthIndexChange)
-				synthProgress = synthProgress + synthIndexChange
-			}
-			console.log(`${synthProgress} ${synthIndexChange}`)
+			const pageOffset = allElements
+				.slice(0, pageIndex)
+				.reduce((total, elements) => total + elements.length, 0);
+
+			synthProgress = pageOffset;
 		}
-		pagePlayedOnce = true;
-	
-        synthIndex++;
+
+		synthIndex++;
 		synthProgress++;
 
 		audioProgress.style.width = `${(synthProgress / (allElements1D.length - 1)) * 100}%`
 
-        if (!sentence) continue;
+		if (!sentence) continue;
 
-        const utterance = new SpeechSynthesisUtterance(sentence);
+		utterance = new SpeechSynthesisUtterance(sentence);
+		utterance.onboundary = onboundaryHandler;
 		utterance.lang = "pt-br"
 
-        utterance.onend = () => {
-            if (isPlaying && !synth.paused) {
-                speakNext();
-            }
-        };
+		utterance.onend = () => {
+			if (isPlaying && !synth.paused) {
+				speakNext();
+			}
+		};
 
-        utterance.onerror = (event) => {
-            console.error("Speech synthesis error:", event.error);
+		utterance.onerror = (event) => {
+			console.error("Speech synthesis error:", event.error);
 
-            if (isPlaying && !synth.paused) {
-                speakNext();
-            }
-        };
+			if (isPlaying && !synth.paused) {
+				speakNext();
+			}
+		};
 
-        synth.speak(utterance);
+		synth.speak(utterance);
 
-        return;
-    }
-
-    isPlaying = false;
-    playButton.textContent = "▶";
-}
-
-function play() {
-    playButton.textContent = "⏸";
-    playButton.onclick = pause;
-
-    if (synth.paused) {
-        isPlaying = true;
-        synth.resume();
-        return;
-    }
-
-    if (isPlaying) {
 		return;
 	}
 
-    isPlaying = true;
-    speakNext();
+	isPlaying = false;
+	playButton.textContent = "▶";
+}
+
+function onboundaryHandler(e){
+
+	for (x in currentPageElements) {
+    	let value = currentPageElements[synthIndex].textContent
+	}
+
+    let index = e.charIndex;
+    let word = getWordAt(value, index);
+    let anchorPosition = getWordStart(value, index);
+    let activePosition = anchorPosition + word.length;
+    
+    textarea.focus();
+    // Added lines to scroll
+    const fullText = textarea.value;
+    textarea.value = fullText.substring(0, activePosition);
+    textarea.scrollTop = textarea.scrollHeight;
+    textarea.value = fullText;   
+    // end added lines to scroll
+    if (textarea.setSelectionRange) {
+       textarea.setSelectionRange(anchorPosition, activePosition);
+    }
+    else {
+       let range = textarea.createTextRange();
+       range.collapse(true);
+       range.moveEnd('character', activePosition);
+       range.moveStart('character', anchorPosition);
+       range.select();
+    }
+};
+
+function play() {
+	playButton.textContent = "⏸";
+	playButton.onclick = pause;
+
+	if (synth.paused) {
+		isPlaying = true;
+		synth.resume();
+		return;
+	}
+
+	if (isPlaying) {
+		return;
+	}
+
+	isPlaying = true;
+	speakNext();
 }
 
 function pause() {
-    isPlaying = false;
-    synth.pause();
+	isPlaying = false;
+	synth.pause();
 
-    playButton.textContent = "▶";
-    playButton.onclick = play;
+	playButton.textContent = "▶";
+	playButton.onclick = play;
 }
 
 function rewind() {
@@ -366,8 +352,4 @@ function forward() {
 		getSpeechText(currentPageElements[synthIndex])
 	}
 	console.log(synthIndex)
-}
-
-function updateSynth() {
-	
 }

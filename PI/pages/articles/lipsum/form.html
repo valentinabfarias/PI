@@ -14,11 +14,22 @@
 <body data-type="form">
     <div id="header-element"></div>
     <div id="control-bar">
-        <nav id="form-options">
-            <div id="progress-bar" role="progressbar">
-                <div id="article-progress"></div>
+        <div id="progress-bar" role="progressbar">
+            <div id="article-progress"></div>
+        </div>
+        <nav id="article-options">
+            <div id="audio-controls">
+                <div id="audio-buttons">
+                    <button id="rewind" onclick="rewind()">⏮</button>
+                    <button id="play" onclick="play()">▶</button>
+                    <button id="replay" onclick="replay()">⟲</button>
+                </div>
+                <div id="audio-bar" role="progressbar" aria-valuemin="1">
+                    <div id="audio-progress"></div>
+                </div>
             </div>
             <span id="page-counter"></span>
+            <span id="page-counter" class="hidden" style="display: none;"></span>
         </nav>
     </div>
     <main>

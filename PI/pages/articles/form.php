@@ -1,4 +1,4 @@
 <?php
-header("Location: ../mapa.html");
+header("Location: ../map.html");
 die();
 ?>
