@@ -69,7 +69,7 @@ form.addEventListener('submit', async function(e) {
     btnEnviar.textContent = 'Enviar';
   }
 
- document.getElementById("meuBotao").addEventListener("click", function() {
+ document.getElementById("btnEnviar").addEventListener("click", function() {
     fetch("processar.php")
         .then(response => response.text())
         .then(dados => {
