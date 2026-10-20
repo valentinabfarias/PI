@@ -107,7 +107,7 @@ app.post(
     },
 );
 
-app.get("/api/produtos", async (req, res) => {
+app.get("/api/formulario", async (req, res) => {
     if (!pool) {
         return res.status(503).json({ error: "Banco de dados não configurado" });
     }
@@ -131,7 +131,7 @@ app.get("/api/produtos", async (req, res) => {
             sql += " WHERE " + conditions.join(" AND ");
         }
 
-        sql += " ORDER BY data_cadastro DESC";
+        sql += " ORDER BY dataHora DESC";
 
         const [rows] = await pool.execute(sql, params);
         res.json(rows);
@@ -140,7 +140,7 @@ app.get("/api/produtos", async (req, res) => {
     }
 });
 
-app.post("/api/produtos", async (req, res) => {
+app.post("/api/formulario", async (req, res) => {
     if (!pool) {
         return res.status(503).json({ error: "Banco de dados não configurado" });
     }
@@ -153,13 +153,13 @@ app.post("/api/produtos", async (req, res) => {
                 .json({ error: "Nome e e-mail são obrigatórios" });
         }
 
-        const sql = `INSERT INTO formulario (nome, email, senha, data_cadastro) 
-                    VALUES (?, ?, ?, NOW())`;
+        const sql = `INSERT INTO formulario (nome, email, senha ) 
+                    VALUES (?, ?, ? )`;
 
         const [result] = await pool.execute(sql, [
             nome,
             email,
-            senha || null,
+            senha
         ]);
 
         res.status(201).json({
@@ -171,7 +171,7 @@ app.post("/api/produtos", async (req, res) => {
     }
 });
 
-app.put("/api/produtos/:id", async (req, res) => {
+app.put("/api/formulario/:id", async (req, res) => {
     if (!pool) {
         return res.status(503).json({ error: "Banco de dados não configurado" });
     }
@@ -181,7 +181,7 @@ app.put("/api/produtos/:id", async (req, res) => {
 
         const sql = `UPDATE formulario SET nome=?, email=?, senha=? WHERE id=?`;
 
-        const [result] = await pool.execute(sql, [nome, email, senha, id]);
+        const [result] = await pool.execute(sql, [nome, email, senha]);
 
         if (result.affectedRows === 0) {
             return res.status(404).json({ error: "Cadastro não encontrado" });
@@ -193,7 +193,7 @@ app.put("/api/produtos/:id", async (req, res) => {
     }
 });
 
-app.delete("/api/produtos/:id", async (req, res) => {
+app.delete("/api/formulario/:id", async (req, res) => {
     if (!pool) {
         return res.status(503).json({ error: "Banco de dados não configurado" });
     }
@@ -217,5 +217,5 @@ app.delete("/api/produtos/:id", async (req, res) => {
 app.listen(PORT, () => {
     console.log(`Servidor em http://localhost:${PORT}`);
     console.log(`Site estático: http://localhost:${PORT}/PI/pages/map.html`);
-    console.log(`API: http://localhost:${PORT}/api/produtos`);
+    console.log(`API: http://localhost:${PORT}/api/formulario`);
 });
