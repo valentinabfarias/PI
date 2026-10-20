@@ -68,4 +68,16 @@ form.addEventListener('submit', async function(e) {
     btnEnviar.disabled = false;
     btnEnviar.textContent = 'Enviar';
   }
+
+  document.getElementById("btn-enviar").addEventListener("click", function() {
+    fetch("processar.php")
+        .then(response => response.text())
+        .then(dados => {
+            console.log(dados);
+            alert(dados);
+        })
+        .catch(erro => {
+            console.error("Erro", erro);
+        });
+
 });
