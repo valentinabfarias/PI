@@ -20,6 +20,6 @@ $jsonFiles = array_values($jsonFiles);
 
 $_SESSION['articles'] = $jsonFiles;
 
-$jsonFiles_to_js = json_encode($jsonFiles)
+$jsonFiles_to_js = json_encode($jsonFiles);
 ?>
 
