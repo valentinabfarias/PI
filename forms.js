@@ -69,15 +69,13 @@ form.addEventListener('submit', async function(e) {
     btnEnviar.textContent = 'Enviar';
   }
 
-  document.getElementById("btn-enviar").addEventListener("click", function() {
+ document.getElementById("meuBotao").addEventListener("click", function() {
     fetch("processar.php")
         .then(response => response.text())
         .then(dados => {
             console.log(dados);
-            alert(dados);
         })
         .catch(erro => {
-            console.error("Erro", erro);
+            console.error("Erro ao chamar o PHP:", erro);
         });
-
 });
