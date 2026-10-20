@@ -167,9 +167,9 @@ if (document.getElementById("mobile-footer-element") !== null) {
         const Html = await resp.text();
         document.getElementById("mobile-footer-element").outerHTML = Html;
 
-        document.querySelectorAll("#mobile-footer img[data-app-icon]").forEach((img) => {
-            img.src = appUrl("assets/default.svg");
-        });
+        document.getElementById("mobile-footer-map").src = appUrl("assets/map.svg")
+        document.getElementById("mobile-footer-settings").src = appUrl("assets/settings.svg");
+        document.getElementById("mobile-footer-about").src = appUrl("assets/information.svg");
 
         document.querySelectorAll("#mobile-footer [data-app-href]").forEach((anchor) => {
             anchor.href = appUrl(anchor.getAttribute("data-app-href"));

@@ -580,27 +580,44 @@ const mapReturnText = document.getElementById("map-return-text")
 function hoverMapReturn() {
     if (window.innerWidth > 768) {
         mapReturn.style.borderRadius = "20px"
-        mapReturnArrow.style.fontSize = "1.5rem"
-        mapReturnText.style.display = "flex"
         mapReturn.style.padding = "1.2rem"
+        mapReturn.style.background = "var(--nav-toggle-bg-hover)"
+        mapReturn.style.gap = "0.6rem"
+
+        mapReturnArrow.style.fontSize = "1.5rem"
+
+        mapReturnText.style.visibility = "visible"
+        mapReturnText.style.width = "auto"
+        
+        mapReturnText.innerHTML = "Voltar ao início"
     }
 }
 
 function cancelMapReturn() {
     if (window.innerWidth > 768) {
         mapReturn.style.borderRadius = "50px"
-        mapReturnArrow.style.fontSize = "2.5rem"
-        mapReturnText.style.display = "none"
         mapReturn.style.padding = "0.6rem"
+        mapReturn.style.background = "var(--destaque-1)"
+        mapReturn.style.gap = "0"
+
+        mapReturnArrow.style.fontSize = "2.5rem"
+
+        mapReturnText.style.visibility = "hidden"
+        mapReturnText.style.width = "0"
+
+        mapReturnText.innerHTML = ""
+
     }
 }
 
 function onScrollAppear() {
     const y = window.scrollY;
     if (y >= 300) {
-        document.getElementById("map-return-formatting").style.display = "flex"
+        document.getElementById("map-return-formatting").style.visibility = "visible"
+        mapReturnArrow.innerHTML = "🡅"
     } else {
-        document.getElementById("map-return-formatting").style.display = "none"
+        document.getElementById("map-return-formatting").style.visibility = "hidden"
+        mapReturnArrow.innerHTML = ""
     }
 }
 window.addEventListener("scroll", onScrollAppear);

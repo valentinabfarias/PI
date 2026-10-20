@@ -181,7 +181,7 @@ main {
 	padding-bottom: 0;
 
 	@media (max-width: 480px) {
-		padding: 0;
+		padding: 40px 0;
 	}
 }
 
@@ -200,7 +200,7 @@ main {
 	padding-bottom: 1.25rem;
 
 	@media (max-width: 480px) {
-		padding: 1.25rem 1.25rem 0;
+		padding: 0 40px;
 	}
 }
 
@@ -218,6 +218,11 @@ main {
 	color: var(--texto-main);
 	opacity: 0.88;
 	font-size: 1rem;
+
+	@media (max-width: 480px) {
+		padding: 1.25rem 40px;
+		padding-bottom: 0;
+	}
 }
 
 .option {
@@ -356,7 +361,8 @@ main {
 }
 
 #map-return-formatting {
-	display: none;
+	visibility: hidden;
+	display: flex;
 	position: fixed;
 	flex-direction: row-reverse;
 	width: 90vw;
@@ -375,6 +381,8 @@ main {
 
 #map-return {
 	display: flex;
+	gap: 0;
+	width: fit-content;
 	position: relative;
 	z-index: 15;
 	font-weight: normal;
@@ -387,13 +395,18 @@ main {
 	align-items: center;
 	align-self: center;
 
+	background-color: var(--destaque-1);
+	color: white;
+
 	#up-arrow {
 		font-size: 2.5rem;
 	}
 }
 
 #map-return-text {
-	display: none;
+	display: flex;
+	width: auto;
+	visibility: hidden;
 	font-family: (--fonte);
 }
 
