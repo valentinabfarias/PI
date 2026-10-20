@@ -84,7 +84,7 @@ app.get("/api/journey", (req, res) => {
 });
 
 app.post(
-    "/api/journey/stages/:stageId/pdf",
+    "/api/formulario/stages/:stageId/pdf",
     requireAdmin,
     pdfUpload.single("pdf"),
     (req, res) => {
