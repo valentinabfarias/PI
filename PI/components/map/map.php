@@ -4,7 +4,6 @@ header('Content-Type: application/javascript');
  
 $username = $_SESSION['username'] ?? 'Guest';
 $password = $_SESSION['password'] ?? '';
-/**********************/
 
 $dir = '../../json-map-images/';
 
