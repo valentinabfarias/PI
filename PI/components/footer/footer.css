@@ -38,8 +38,8 @@
 }
 
 .footer-social-block {
-    align-items: flex-end;
-    text-align: right;
+    align-items: flex;
+    text-align: left;
 
     @media (max-width: 768px) {
         align-items: center;

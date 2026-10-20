@@ -572,3 +572,39 @@ window.addEventListener("resize", () => {
         positionSnakeInstant(window.PIJourney.getMaxUnlocked());
     }
 });
+
+const mapReturn = document.getElementById("map-return");
+const mapReturnArrow = document.getElementById("up-arrow")
+const mapReturnText = document.getElementById("map-return-text")
+
+function hoverMapReturn() {
+    if (window.innerWidth > 768) {
+        mapReturn.style.borderRadius = "20px"
+        mapReturnArrow.style.fontSize = "1.5rem"
+        mapReturnText.style.display = "flex"
+        mapReturn.style.padding = "1.2rem"
+    }
+}
+
+function cancelMapReturn() {
+    if (window.innerWidth > 768) {
+        mapReturn.style.borderRadius = "50px"
+        mapReturnArrow.style.fontSize = "2.5rem"
+        mapReturnText.style.display = "none"
+        mapReturn.style.padding = "0.6rem"
+    }
+}
+
+function onScrollAppear() {
+    const y = window.scrollY;
+    if (y >= 300) {
+        document.getElementById("map-return-formatting").style.display = "flex"
+    } else {
+        document.getElementById("map-return-formatting").style.display = "none"
+    }
+}
+window.addEventListener("scroll", onScrollAppear);
+
+function rescroll() {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+}

@@ -60,8 +60,11 @@
             class="map-return"
             aria-label="Voltar ao início da página"
             label="Voltar ao início da página"
+            onmouseover="hoverMapReturn()"
+            onmouseout="cancelMapReturn()"
+            onclick="rescroll()"
             >
-                <span id="up-arrow">🡅</span>&nbsp;Voltar ao início
+                <span id="up-arrow">🡅</span><span id="map-return-text">&nbsp;Voltar ao início</span>
             </button>
         </div>
     </main>
