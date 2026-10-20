@@ -24,16 +24,24 @@ header {
     margin: 0;
 }
 
-#logo-div {
+#logo-div-formatting {
     display: flex;
     align-items: center;
     gap: 0.65rem;
-    color: var(--nav-text);
     min-width: 0;
     z-index: 2;
 }
 
-#logo-div .logo-title {
+#logo-div {
+    color: var(--nav-text);
+    text-decoration: none;
+}
+
+#logo-div:hover {
+    text-decoration: underline;
+}
+
+#logo-div-formatting .logo-title {
     font-size: clamp(0.95rem, 2.2vw, 1.125rem);
     font-weight: 700;
     line-height: 1.2;
@@ -41,7 +49,7 @@ header {
     margin: 0;
 }
 
-#logo-div img {
+#logo-div-formatting img {
     height: 2.75rem;
     width: auto;
     max-width: 3.25rem;
@@ -49,13 +57,13 @@ header {
     flex-shrink: 0;
 }
 
-#logo-div a {
+#logo-div-formatting a {
     display: flex;
     align-items: center;
     border-radius: 6px;
 }
 
-#logo-div a:focus-visible {
+#logo-div-formatting a:focus-visible {
     outline: 2px solid var(--nav-text);
     outline-offset: 3px;
 }
@@ -82,6 +90,10 @@ header {
     gap: 0.25rem clamp(1.35rem, 4vw, 2.75rem);
     z-index: 1;
     pointer-events: none;
+
+    @media (max-width: 768px) {
+		display: none;
+	}
 }
 
 #header-nav a {
@@ -106,6 +118,7 @@ header {
     outline-offset: 2px;
 }
 
+.login-btn,
 .theme-toggle,
 .menu-open-btn {
     display: inline-flex;
@@ -122,16 +135,19 @@ header {
     transition: background 0.2s ease, transform 0.15s ease;
 }
 
+.login-btn:hover,
 .theme-toggle:hover,
 .menu-open-btn:hover {
     background: var(--nav-toggle-bg-hover);
 }
 
+.login-btn:active,
 .theme-toggle:active,
 .menu-open-btn:active {
     transform: scale(0.96);
 }
 
+.login-btn:focus-visible,
 .theme-toggle:focus-visible,
 .menu-open-btn:focus-visible {
     outline: 2px solid var(--nav-text);
@@ -172,7 +188,7 @@ html[data-theme="alto-contraste"] #theme-toggle .theme-icon-moon {
         padding-bottom: 0.15rem;
     }
 
-    #logo-div {
+    #logo-div-formatting {
         flex: 1 1 auto;
         min-width: 0;
     }
@@ -194,7 +210,7 @@ html[data-theme="alto-contraste"] #theme-toggle .theme-icon-moon {
         font-size: 1rem;
     }
 
-    #logo-div .logo-title {
+    #logo-div-formatting .logo-title {
         font-size: 0.9rem;
     }
 }

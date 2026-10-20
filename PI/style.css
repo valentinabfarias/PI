@@ -20,7 +20,7 @@
 	--destaque-1: #34502b;
 	--texto-destaque-1: #ffffff;
 
-	--nav-bg: #3ecf72;
+	--nav-bg: #61ad6c;
 	--nav-text: #ffffff;
 	--nav-border: rgb(255 255 255 / 0.22);
 	--nav-toggle-bg: rgb(255 255 255 / 0.18);
@@ -353,6 +353,36 @@ main {
 .sobre-lista {
 	margin: 0.5rem 0 0 1.25rem;
 	line-height: 1.7;
+}
+
+#map-return-formatting {
+	position: fixed;
+	display: flex;
+	width: 100vw;
+	top: 80vh;
+	left: 80vw;
+	z-index: 15;
+	gap: 1rem;
+}
+
+#map-return {
+	display: flex;
+	position: relative;
+	z-index: 15;
+	font-weight: bold;
+	min-height: 2.75rem;
+  	padding: 0.65rem 1.15rem;
+	font-size: 1.125rem;
+	border-radius: 30px;
+	align-items: center;
+
+	#up-arrow {
+		font-size: 2rem;
+	}
+
+	#up-arrow {
+		font-size: 1.5rem;
+	}
 }
 
 /**********************/

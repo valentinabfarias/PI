@@ -410,10 +410,8 @@ async function renderJourney(crawlOptions) {
         const isCurrent = i === maxUnlocked;
 
         const li = document.createElement("li");
-        const row = Math.floor(i / 2) + 1;
         const side = i % 2 === 0 ? "left" : "right";
         li.className = `journey-stage journey-stage--${side}`;
-        li.style.gridRow = String(row);
         li.id = `journey-stage-${stage.id}`;
         if (!unlocked) li.classList.add("is-locked");
         if (isCurrent) li.classList.add("is-current");

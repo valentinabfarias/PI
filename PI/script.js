@@ -126,6 +126,7 @@ if (document.getElementById("header-element") !== null) {
 
         document.querySelectorAll("[data-app-href]").forEach((anchor) => {
             anchor.href = appUrl(anchor.getAttribute("data-app-href"));
+            anchor.onclick = `window.document.href='${appUrl(anchor.getAttribute("data-app-href"))}'`
         });
 
         initThemeToggle();

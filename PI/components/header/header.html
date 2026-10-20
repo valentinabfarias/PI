@@ -1,17 +1,31 @@
 <header>
     <span id="header-css">
-        <div id="logo-div">
-            <a data-app-href="pages/map.html" href="#">
+        <div id="logo-div-formatting">
+            <a id="logo-div" data-app-href="pages/map.html" href="#">
                 <img src="" alt="" width="52" height="52">
+                <p class="logo-title">Jornada Inclusiva</p>
             </a>
-            <p class="logo-title">Jornada Inclusiva</p>
         </div>
         <nav id="header-nav" aria-label="Atalhos principais">
-            <a data-app-href="pages/map.html" href="#">Início</a>
-            <a data-app-href="../forms.html" href="#">Cadastro</a>
-            <a data-app-href="pages/sobre.html" href="#">Sobre</a>
         </nav>
         <div id="header-actions">
+            <a
+                type="button"
+                id="login"
+                class="login-btn"
+                aria-label="Entrar ou cadastrar-se"
+                aria-pressed="false"
+                title="Entrar ou cadastrar-se"
+                data-app-href="../forms.html"
+                href="#"
+                tabindex="0"
+            >
+                <svg class="login-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                    <circle cx="12" cy="7.5" r="3" fill="currentColor" />
+                    <rect width="10" height="7" rx="4" ry="4" x="7" y="12" fill="currentColor" />
+                    <rect width="10" height="4" rx="1" ry="1" x="7" y="15" fill="currentColor" />
+                </svg>
+            </a>
             <button
                 type="button"
                 id="theme-toggle"

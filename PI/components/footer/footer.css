@@ -10,10 +10,6 @@
     line-height: 1.5;
     padding: 1.5rem clamp(1rem, 4vw, 2.5rem);
 
-    @media (max-width: 480px) {
-        padding-bottom: calc(4.5rem + 0.5rem);
-    }
-
     hr {
         border-radius: 1px;
         border-color: white;
@@ -35,7 +31,7 @@
     flex-wrap: wrap;
     gap: 1.5rem 2rem;
 
-    @media (max-width: 480px) {
+    @media (max-width: 768px) {
         flex-direction: column;
         align-items: center;
     }
@@ -45,7 +41,7 @@
     align-items: flex-end;
     text-align: right;
 
-    @media (max-width: 480px) {
+    @media (max-width: 768px) {
         align-items: center;
         text-align: center;
     }
@@ -98,6 +94,7 @@
     display: flex;
     flex-direction: column;
     gap: 0.5rem;
+    align-self: center;
 
     a {
         color: inherit;
@@ -114,7 +111,7 @@
         padding-bottom: 0;
     }
 
-    @media (max-width: 480px) {
+    @media (max-width: 768px) {
         text-align: center;
         align-items: center;
     }
