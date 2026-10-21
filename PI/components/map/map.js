@@ -581,7 +581,6 @@ function hoverMapReturn() {
     if (window.innerWidth > 768) {
         mapReturn.style.borderRadius = "20px"
         mapReturn.style.padding = "1.2rem"
-        mapReturn.style.background = "var(--nav-toggle-bg-hover)"
         mapReturn.style.gap = "0.6rem"
 
         mapReturnArrow.style.height = "1.5rem"
@@ -598,7 +597,6 @@ function cancelMapReturn() {
     if (window.innerWidth > 768) {
         mapReturn.style.borderRadius = "50px"
         mapReturn.style.padding = "0.6rem"
-        mapReturn.style.background = "var(--destaque-1)"
         mapReturn.style.gap = "0"
 
         mapReturnArrow.style.height = "2rem"
