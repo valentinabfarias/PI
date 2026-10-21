@@ -193,6 +193,13 @@ html[data-theme="alto-contraste"] #theme-toggle .theme-icon-moon {
         min-width: 0;
     }
 
+    .login-btn,
+    .theme-toggle,
+    .menu-open-btn {
+        height: 3rem;
+        width: 3rem;
+    }
+
     #header-nav {
         position: static;
         transform: none;
@@ -211,6 +218,6 @@ html[data-theme="alto-contraste"] #theme-toggle .theme-icon-moon {
     }
 
     #logo-div-formatting .logo-title {
-        font-size: 0.9rem;
+        font-size: 1.2rem;
     }
 }

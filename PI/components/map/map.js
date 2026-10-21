@@ -574,7 +574,7 @@ window.addEventListener("resize", () => {
 });
 
 const mapReturn = document.getElementById("map-return");
-const mapReturnArrow = document.getElementById("up-arrow")
+const mapReturnArrow = document.getElementById("map-return-arrow")
 const mapReturnText = document.getElementById("map-return-text")
 
 function hoverMapReturn() {
@@ -584,7 +584,8 @@ function hoverMapReturn() {
         mapReturn.style.background = "var(--nav-toggle-bg-hover)"
         mapReturn.style.gap = "0.6rem"
 
-        mapReturnArrow.style.fontSize = "1.5rem"
+        mapReturnArrow.style.height = "1.5rem"
+        mapReturnArrow.style.width = "1.5rem"
 
         mapReturnText.style.visibility = "visible"
         mapReturnText.style.width = "auto"
@@ -600,7 +601,8 @@ function cancelMapReturn() {
         mapReturn.style.background = "var(--destaque-1)"
         mapReturn.style.gap = "0"
 
-        mapReturnArrow.style.fontSize = "2.5rem"
+        mapReturnArrow.style.height = "2.2rem"
+        mapReturnArrow.style.width = "2.2rem"
 
         mapReturnText.style.visibility = "hidden"
         mapReturnText.style.width = "0"
@@ -614,10 +616,8 @@ function onScrollAppear() {
     const y = window.scrollY;
     if (y >= 300) {
         document.getElementById("map-return-formatting").style.visibility = "visible"
-        mapReturnArrow.innerHTML = "🡅"
     } else {
         document.getElementById("map-return-formatting").style.visibility = "hidden"
-        mapReturnArrow.innerHTML = ""
     }
 }
 window.addEventListener("scroll", onScrollAppear);

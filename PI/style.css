@@ -398,14 +398,15 @@ main {
 	background-color: var(--destaque-1);
 	color: white;
 
-	#up-arrow {
-		font-size: 2.5rem;
+	#map-return-arrow {
+		width: 2rem;
+		height: 2rem;
 	}
 }
 
 #map-return-text {
 	display: flex;
-	width: auto;
+	width: 0;
 	visibility: hidden;
 	font-family: (--fonte);
 }
